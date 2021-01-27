@@ -1,0 +1,26 @@
+header {
+  background-color: var(--main-background-color);
+  text-align: center;
+  border: 2px solid var(--main-background-color-dark);
+  min-height: 10vh;
+}
+
+.mainHeading {
+  color: var(--main-text-color);
+  outline: purple;
+  font-size: 5rem;
+  padding: 2rem 0;
+  text-decoration: underline;
+}
+
+@media (max-width: 510px) {
+  .mainHeading {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 405px) {
+  .mainHeading {
+    font-size: 3rem;
+  }
+}

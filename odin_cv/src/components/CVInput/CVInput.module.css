@@ -1,0 +1,8 @@
+.CVInput {
+  min-height: 90vh;
+  background-color: #ecb390;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
