@@ -12,8 +12,8 @@ const cvInputs = (props) => {
 
     content = inputTitle.map((inputTitle) => {
       return (
-        <li key={inputTitle}>
-          <p>{inputTitle}:</p>
+        <li key={inputTitle} className={classes.cvInputs__subContent}>
+          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
           <input></input>
         </li>
       );
@@ -25,8 +25,8 @@ const cvInputs = (props) => {
 
     content = inputTitle.map((inputTitle) => {
       return (
-        <li key={inputTitle}>
-          <p>{inputTitle}:</p>
+        <li key={inputTitle} className={classes.cvInputs__subContent}>
+          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
           <input></input>
         </li>
       );
@@ -43,8 +43,8 @@ const cvInputs = (props) => {
 
     content = inputTitle.map((inputTitle) => {
       return (
-        <li key={inputTitle}>
-          <p>{inputTitle}:</p>
+        <li key={inputTitle} className={classes.cvInputs__subContent}>
+          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
           <input></input>
         </li>
       );
@@ -56,21 +56,39 @@ const cvInputs = (props) => {
 
     content = inputTitle.map((inputTitle) => {
       return (
-        <li key={inputTitle}>
-          <p>{inputTitle}:</p>
+        <li key={inputTitle} className={classes.cvInputs__subContent}>
+          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
           <input></input>
         </li>
       );
     });
   }
 
-  console.log(props);
-  return (
-    <div className={`${classes.CVInputs} ${classColor}`}>
-      <h3>{props.heading}</h3>
-      <ul>{content}</ul>
-    </div>
+  let cvInputs = (
+    <React.Fragment>
+      <div className={`${classes.cvInputs} ${classColor}`}>
+        <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
+        <ul className={classes.cvInputs__content}>{content}</ul>
+      </div>
+      <div className={classes.cvInputs__saved}>
+        <h3
+          className={classes.cvInputs__heading}
+        >{`Saved ${props.heading}`}</h3>
+      </div>
+    </React.Fragment>
   );
+
+  if (props.personal) {
+    cvInputs = (
+      <div className={`${classes.cvInputs} ${classes.personal} ${classColor}`}>
+        <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
+        <ul className={classes.cvInputs__content}>{content}</ul>
+      </div>
+    );
+  }
+
+  console.log(props);
+  return cvInputs;
 };
 
 export default cvInputs;

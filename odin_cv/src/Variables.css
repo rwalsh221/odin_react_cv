@@ -1,6 +1,12 @@
 :root {
+  /* TEXT COLORS */
   --main-text-color: #fcf8e8;
 
+  /* BACKGROUND COLORS */
   --main-background-color: #df7861;
   --main-background-color-dark: #d7593c;
+  --main-background-color-light: #ecb390;
+
+  /* BORDER */
+  --border-2px-dark: 2px solid var(--main-background-color-dark);
 }

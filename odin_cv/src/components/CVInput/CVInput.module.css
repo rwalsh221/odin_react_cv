@@ -1,6 +1,6 @@
 .CVInput {
   min-height: 90vh;
-  background-color: #ecb390;
+  background-color: var(--main-background-color-light);
   display: flex;
   align-items: center;
   justify-content: center;
