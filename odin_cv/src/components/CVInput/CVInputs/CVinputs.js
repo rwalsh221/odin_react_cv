@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../../UI/Button/Button';
 import classes from './CVInputs.module.css';
 
 const cvInputs = (props) => {
@@ -69,6 +70,7 @@ const cvInputs = (props) => {
       <div className={`${classes.cvInputs} ${classColor}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
+        <Button btnType={'btnAdd'} children={'ADD'}></Button>
       </div>
       <div className={classes.cvInputs__saved}>
         <h3
@@ -80,9 +82,10 @@ const cvInputs = (props) => {
 
   if (props.personal) {
     cvInputs = (
-      <div className={`${classes.cvInputs} ${classes.personal} ${classColor}`}>
+      <div className={`${classes.personal} ${classColor}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
+        <Button btnType={'btnAdd'} children={'ADD'}></Button>
       </div>
     );
   }

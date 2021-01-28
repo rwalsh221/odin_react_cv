@@ -1,0 +1,29 @@
+button {
+  width: max-content;
+  border-style: none;
+}
+
+.btnAdd {
+  padding: 1rem;
+  background-color: var(--main-text-color);
+  font-family: inherit;
+  border: var(--border-2px-dark);
+  box-shadow: 2px 2px 2px var(--main-background-color-dark);
+  color: var(--main-background-color-dark);
+  font-weight: 600;
+}
+
+.btnAdd:hover {
+  background-color: var(--main-background-color-dark);
+  border: 2px solid var(--main-text-color);
+  color: var(--main-text-color);
+}
+
+.btnAdd:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btnAdd:focus {
+  outline-color: #5f2114;
+}
