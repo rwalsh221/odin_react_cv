@@ -1,0 +1,46 @@
+.savedCvInput {
+  width: 48%;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-text-color);
+  margin-right: -5px;
+}
+
+.savedCvInput__content,
+.savedCvInput__contentRed {
+  width: 96%;
+  height: max-content;
+  background-color: var(--main-background-color);
+  border: var(--border-2px-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0.5rem;
+
+  box-shadow: 2px 2px 2px var(--main-background-color);
+}
+
+.savedCvInput__content {
+  color: var(--main-text-color);
+}
+
+.savedCvInput__contentRed {
+  background-color: red;
+}
+
+.btn {
+  margin-right: 500px;
+}
+
+/* height: max-content;
+  background-color: var(--main-background-color);
+  border: var(--border-2px-dark);
+  color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 1rem;*/

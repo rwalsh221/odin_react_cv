@@ -29,6 +29,15 @@
   background-color: var(--main-background-color-light);
   box-shadow: inset 2px 2px 2px var(--main-background-color);
   color: var(--main-background-color-dark);
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cvInputs__saved h3 {
+  width: 100%;
 }
 
 .personal {

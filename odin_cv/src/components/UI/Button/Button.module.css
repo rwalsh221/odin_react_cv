@@ -3,7 +3,8 @@ button {
   border-style: none;
 }
 
-.btnAdd {
+.btnAdd,
+.btnEdit {
   padding: 1rem;
   background-color: var(--main-text-color);
   font-family: inherit;
@@ -13,17 +14,24 @@ button {
   font-weight: 600;
 }
 
-.btnAdd:hover {
+.btnAdd:hover,
+.btnEdit:hover {
   background-color: var(--main-background-color-dark);
   border: 2px solid var(--main-text-color);
   color: var(--main-text-color);
 }
 
-.btnAdd:active {
+.btnAdd:active,
+.btnEdit:active {
   transform: translateY(2px);
   box-shadow: none;
 }
 
-.btnAdd:focus {
+.btnAdd:focus,
+.btnEdit:focus {
   outline-color: #5f2114;
+}
+
+.btnEdit {
+  margin-right: 5px;
 }

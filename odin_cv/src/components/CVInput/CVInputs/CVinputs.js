@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '../../UI/Button/Button';
+import SavedCvInput from '../../SavedCvInput/SavedCvInput';
 import classes from './CVInputs.module.css';
 
 const cvInputs = (props) => {
@@ -70,12 +71,15 @@ const cvInputs = (props) => {
       <div className={`${classes.cvInputs} ${classColor}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
-        <Button btnType={'btnAdd'} children={'ADD'}></Button>
+        <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
       </div>
       <div className={classes.cvInputs__saved}>
         <h3
           className={classes.cvInputs__heading}
         >{`Saved ${props.heading}`}</h3>
+        <SavedCvInput title={'test title'} place={'test place'} />
+        <SavedCvInput title={'test title'} place={'test place'} />
+        <SavedCvInput title={'test title'} place={'test place'} />
       </div>
     </React.Fragment>
   );
@@ -85,7 +89,7 @@ const cvInputs = (props) => {
       <div className={`${classes.personal} ${classColor}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
-        <Button btnType={'btnAdd'} children={'ADD'}></Button>
+        <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
       </div>
     );
   }
