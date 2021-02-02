@@ -34,13 +34,8 @@
   margin-right: 500px;
 }
 
-/* height: max-content;
-  background-color: var(--main-background-color);
-  border: var(--border-2px-dark);
-  color: var(--main-text-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin: 1rem;*/
+@media (max-width: 1110px) {
+  .savedCvInput {
+    width: 90%;
+  }
+}
