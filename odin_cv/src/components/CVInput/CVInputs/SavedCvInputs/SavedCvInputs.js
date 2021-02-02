@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import Button from '../UI/Button/Button';
-import classes from './SavedCvInput.module.css';
+import Button from '../../../UI/Button/Button';
+import classes from './SavedCvInputs.module.css';
 
 const SavedCvInput = (props) => {
   const [edit, setEdit] = useState({ style: '', content: 'EDIT' });
 
-  const colorChange = () => {
+  const editHandler = () => {
     if (edit.style === '') {
       setEdit({ style: '#5f2114', content: 'DEL' });
     } else {
@@ -23,7 +23,7 @@ const SavedCvInput = (props) => {
         <h4>{props.title} </h4>
         <h4>{props.place}</h4>
       </div>
-      <Button btnType={'btnEdit'} btnLabel={edit.content} click={colorChange} />
+      <Button btnType={'btnEdit'} btnLabel={edit.content} click={editHandler} />
     </div>
   );
 };

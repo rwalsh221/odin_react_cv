@@ -1,17 +1,15 @@
 import React from 'react';
 
 import Button from '../../UI/Button/Button';
-import SavedCvInput from '../../SavedCvInput/SavedCvInput';
+import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 const cvInputs = (props) => {
-  const classColor = classes[props.color];
-
   let content;
 
-  if (props.personal) {
-    const inputTitle = ['Name', 'Address', 'email', 'Phone Number'];
+  const classColor = classes[props.color];
 
+  const inputHandler = (inputTitle) => {
     content = inputTitle.map((inputTitle) => {
       return (
         <li key={inputTitle} className={classes.cvInputs__subContent}>
@@ -20,19 +18,16 @@ const cvInputs = (props) => {
         </li>
       );
     });
+  };
+
+  if (props.personal) {
+    const inputTitle = ['Name', 'Address', 'email', 'Phone Number'];
+    inputHandler(inputTitle);
   }
 
   if (props.employment) {
     const inputTitle = ['Job Title', 'Company', 'Duration', 'Description'];
-
-    content = inputTitle.map((inputTitle) => {
-      return (
-        <li key={inputTitle} className={classes.cvInputs__subContent}>
-          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
-          <input></input>
-        </li>
-      );
-    });
+    inputHandler(inputTitle);
   }
 
   if (props.education) {
@@ -42,15 +37,7 @@ const cvInputs = (props) => {
       'Qualification',
       'Description',
     ];
-
-    content = inputTitle.map((inputTitle) => {
-      return (
-        <li key={inputTitle} className={classes.cvInputs__subContent}>
-          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
-          <input></input>
-        </li>
-      );
-    });
+    inputHandler(inputTitle);
   }
 
   if (props.additional) {
@@ -66,7 +53,13 @@ const cvInputs = (props) => {
     });
   }
 
-  let cvInputs = (
+  return props.personal ? (
+    <div className={`${classes.personal} ${classColor}`} id={props.heading}>
+      <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
+      <ul className={classes.cvInputs__content}>{content}</ul>
+      <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
+    </div>
+  ) : (
     <React.Fragment>
       <div className={`${classes.cvInputs} ${classColor}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
@@ -83,19 +76,6 @@ const cvInputs = (props) => {
       </div>
     </React.Fragment>
   );
-
-  if (props.personal) {
-    cvInputs = (
-      <div className={`${classes.personal} ${classColor}`} id={props.heading}>
-        <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
-        <ul className={classes.cvInputs__content}>{content}</ul>
-        <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
-      </div>
-    );
-  }
-
-  console.log(props);
-  return cvInputs;
 };
 
 export default cvInputs;
