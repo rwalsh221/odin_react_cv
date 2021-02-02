@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../UI/Button/Button';
 import classes from './SavedCvInput.module.css';
 
-const savedCvInput = (props) => {
-  let test = classes.savedCvInput__content;
+const SavedCvInput = (props) => {
+  const [edit, setEdit] = useState({ style: '', content: 'EDIT' });
 
   const colorChange = () => {
-    console.log('CLICKED');
-    if (test === classes.savedCvInput__content) {
-      test = classes.savedCvInput__contentRed;
+    if (edit.style === '') {
+      setEdit({ style: '#5f2114', content: 'DEL' });
     } else {
-      test = classes.savedCvInput__content;
+      setEdit({ style: '', content: 'EDIT' });
     }
-    console.log(test);
   };
-
-  console.log('CLICKED', test);
 
   return (
     <div className={classes.savedCvInput}>
-      <div className={test}>
-        <h4>{props.title}</h4>
+      <div
+        style={{ backgroundColor: edit.style }}
+        className={classes.savedCvInput__content}
+      >
+        <h4>{props.title} </h4>
         <h4>{props.place}</h4>
       </div>
-      <Button btnType={'btnEdit'} btnLabel={'EDIT'} click={colorChange} />
+      <Button btnType={'btnEdit'} btnLabel={edit.content} click={colorChange} />
     </div>
   );
 };
 
-export default savedCvInput;
+export default SavedCvInput;

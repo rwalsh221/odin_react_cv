@@ -86,7 +86,7 @@ const cvInputs = (props) => {
 
   if (props.personal) {
     cvInputs = (
-      <div className={`${classes.personal} ${classColor}`}>
+      <div className={`${classes.personal} ${classColor}`} id={props.heading}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
         <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
