@@ -1,6 +1,9 @@
 button {
-  width: max-content;
+  width: 8rem;
   border-style: none;
+}
+.test {
+  background-color: blue !important;
 }
 
 .btnAdd,
@@ -14,6 +17,7 @@ button {
   font-weight: 600;
 }
 
+.active,
 .btnAdd:hover,
 .btnEdit:hover {
   background-color: var(--main-background-color-dark);
@@ -21,6 +25,7 @@ button {
   color: var(--main-text-color);
 }
 
+.active,
 .btnAdd:active,
 .btnEdit:active {
   transform: translateY(2px);

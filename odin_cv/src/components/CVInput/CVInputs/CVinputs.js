@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../../UI/Button/Button';
-import SavedCvInput from './SavedCvInputs/SavedCvInputs';
+import SavedCvInput from '../SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
-const cvInputs = (props) => {
+const CvInputs = (props) => {
   let content;
 
-  const classColor = classes[props.color];
+  const [personalSubmit, setPersonalSumbit] = useState({
+    clicked: false,
+    textContent: 'ADD',
+  });
 
   const inputHandler = (inputTitle) => {
     content = inputTitle.map((inputTitle) => {
       return (
         <li key={inputTitle} className={classes.cvInputs__subContent}>
           <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
-          <input></input>
+          <input onClick={personalEditHandler}></input>
         </li>
       );
     });
+  };
+
+  const personalSubmitHandler = (e) => {
+    if (e.target.parentNode.id === 'PersonalInformation') {
+      setPersonalSumbit({ clicked: true, textContent: 'SAVED' });
+    }
+  };
+
+  const personalEditHandler = (e) => {
+    if (
+      e.target.parentNode.parentNode.parentNode.id === 'PersonalInformation'
+    ) {
+      setPersonalSumbit({ clicked: false, textContent: 'ADD' });
+    }
   };
 
   if (props.personal) {
@@ -54,14 +71,19 @@ const cvInputs = (props) => {
   }
 
   return props.personal ? (
-    <div className={`${classes.personal} ${classColor}`} id={props.heading}>
+    <div className={`${classes.personal}`} id={props.heading.replace(' ', '')}>
       <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
       <ul className={classes.cvInputs__content}>{content}</ul>
-      <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
+      <Button
+        btnType={'btnAdd'}
+        btnLabel={personalSubmit.textContent}
+        btnSaved={personalSubmit.clicked}
+        click={(e) => personalSubmitHandler(e)}
+      ></Button>
     </div>
   ) : (
     <React.Fragment>
-      <div className={`${classes.cvInputs} ${classColor}`}>
+      <div className={`${classes.cvInputs}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
         <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
@@ -78,4 +100,4 @@ const cvInputs = (props) => {
   );
 };
 
-export default cvInputs;
+export default CvInputs;
