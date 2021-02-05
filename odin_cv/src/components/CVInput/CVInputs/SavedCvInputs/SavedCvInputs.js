@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Button from '../../UI/Button/Button';
+import Button from '../../../UI/Button/Button';
 import classes from './SavedCvInputs.module.css';
 
 const SavedCvInput = (props) => {
