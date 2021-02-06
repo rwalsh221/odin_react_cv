@@ -10,7 +10,25 @@ const CvInputs = (props) => {
   // STATE
   const [inputStore, setInputStore] = useState({
     storeName: props.storeName,
+    data: {},
   });
+
+  const [savedStore, setSavedStore] = useState([]);
+
+  const savedStoreHandler = () => {
+    let newObj = { ...inputStore.data };
+    let test = savedStore.map((val) => val);
+    console.log(test);
+    let newArr = [...test, newObj];
+    // console.log(newArr);
+    // console.log(newObj);
+    // console.log(typeof savedStore);
+    // let newArr = [{ ...savedStore }];
+    console.log(typeof newArr);
+    setSavedStore(newArr);
+    console.log(savedStore);
+    console.log(savedStore[0]);
+  };
 
   const renderInputHandler = (inputTitle, inputName) => {
     content = inputTitle.map((inputTitle, index) => {
@@ -27,10 +45,35 @@ const CvInputs = (props) => {
     });
   };
 
+  // let savedInputContent;
+
+  const renderSavedInputHandler = (arr) => {
+    console.log(arr);
+
+    let savedInputContent = arr.map((el) => (
+      <SavedCvInput title={el.title} place={el.location} />
+    ));
+    console.log(<SavedCvInput></SavedCvInput>);
+    console.log(savedInputContent);
+    return savedInputContent;
+
+    // const savedInputContent = arr.forEach((el) => (
+    //   <SavedCvInput title={arr[el].title} place={arr.el.location} />
+    // ));
+    // return savedInputContent;
+  };
+
+  console.log('savedinput,', renderSavedInputHandler(savedStore));
+
   const inputContentHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
-    setInputStore({ ...inputStore, [name]: value });
+    setInputStore({
+      ...inputStore,
+      data: { ...inputStore.data, [name]: value },
+    });
+
+    console.log(Object.getOwnPropertyNames(inputStore.data));
   };
 
   renderInputHandler(props.inputTitle, props.inputName, props.storeName);
@@ -40,15 +83,20 @@ const CvInputs = (props) => {
       <div className={`${classes.cvInputs}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <ul className={classes.cvInputs__content}>{content}</ul>
-        <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
+        <Button
+          btnType={'btnAdd'}
+          btnLabel={'ADD'}
+          click={savedStoreHandler}
+        ></Button>
       </div>
       <div className={classes.cvInputs__saved}>
         <h3
           className={classes.cvInputs__heading}
         >{`Saved ${props.heading}`}</h3>
+        {/* <SavedCvInput title={'test title'} place={'test place'} />
         <SavedCvInput title={'test title'} place={'test place'} />
-        <SavedCvInput title={'test title'} place={'test place'} />
-        <SavedCvInput title={'test title'} place={'test place'} />
+        <SavedCvInput title={'test title'} place={'test place'} /> */}
+        {renderSavedInputHandler(savedStore)}
       </div>
     </React.Fragment>
   );
