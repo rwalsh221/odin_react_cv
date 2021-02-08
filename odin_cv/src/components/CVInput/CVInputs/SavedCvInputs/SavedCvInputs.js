@@ -15,7 +15,7 @@ const SavedCvInput = (props) => {
   };
 
   return (
-    <div className={classes.savedCvInput}>
+    <div className={classes.savedCvInput} id={props.id}>
       <div
         style={{ backgroundColor: edit.style }}
         className={classes.savedCvInput__content}
@@ -23,7 +23,11 @@ const SavedCvInput = (props) => {
         <h4>{props.title} </h4>
         <h4>{props.place}</h4>
       </div>
-      <Button btnType={'btnEdit'} btnLabel={edit.content} click={editHandler} />
+      <Button
+        btnType={'btnEdit'}
+        btnLabel={edit.content}
+        click={(editHandler, props.click)}
+      />
     </div>
   );
 };

@@ -14,16 +14,20 @@ const cvInput = (props) => {
       />
       <CVInputs
         heading={'Education History'}
-        inputTitle={[
-          'Course Name',
-          'Place of Study',
-          'Qualification',
-          'Description',
+        inputForm={[
+          { title: 'Course Name', type: 'text' },
+          { title: 'Place of Study', type: 'text' },
+          { title: 'Qualification', type: 'text' },
+          { title: 'Description', type: 'text' },
+          // 'Course Name',
+          // 'Place of Study',
+          // 'Qualification',
+          // 'Description',
         ]}
         inputName={['title', 'location', 'qualification', 'description']}
         storeName={'education'}
       />
-      <CVInputs
+      {/* <CVInputs
         heading={'Employment History'}
         inputTitle={['Job Title', 'Company', 'Duration', 'Description']}
         inputName={['title', 'location', 'duration', 'description']}
@@ -36,7 +40,7 @@ const cvInput = (props) => {
         // inputName={['title', 'location', 'description']}
         inputName={['title', 'location']}
         storeName={'additional'}
-      />
+      /> */}
     </main>
   );
 };
