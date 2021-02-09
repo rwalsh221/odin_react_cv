@@ -26,7 +26,8 @@ const SavedCvInput = (props) => {
       <Button
         btnType={'btnEdit'}
         btnLabel={edit.content}
-        click={(editHandler, props.click)}
+        click={props.click}
+        id={props.id}
       />
     </div>
   );

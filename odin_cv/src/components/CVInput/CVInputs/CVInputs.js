@@ -4,6 +4,8 @@ import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
+// TODO: REFACTOR ADD UTILITIES
+
 const CvInputs = (props) => {
   let content;
 
@@ -17,7 +19,13 @@ const CvInputs = (props) => {
 
   const [editSaved, setEditSaved] = useState({ edit: false });
 
-  const [editStore, setEditStore] = useState({});
+  const [editStore, setEditStore] = useState({
+    title: '',
+    location: '',
+    qualification: '',
+    description: '',
+    id: '',
+  });
 
   const inputStoreHandler = (event) => {
     let name = event.target.name;
@@ -40,24 +48,56 @@ const CvInputs = (props) => {
   // TODO: NEED TO TRIGGER ONCHANGE EVENT TO STORE VALUE PROP.
 
   const renderInputHandler = (inputForm, inputName) => {
+    console.log('RENDER', editStore);
+    console.log(editStore[1]);
     content = inputForm.map((element, index) => {
+      console.log(element.title.toLowerCase());
+      let mutatedit = { ...editStore };
+      let test = mutatedit[Object.keys(mutatedit)[index]];
+      console.log(test, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
+      let content = (
+        <input
+          type={element.type}
+          name={inputName[index]}
+          value={test}
+          onChange={(event) => setEditHandler(event)}
+        ></input>
+      );
+      console.log(
+        'RENDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR'
+      );
       return (
         <li key={element.title} className={classes.cvInputs__subContent}>
           <h4 className={classes.cvInputs__inputHeading}>{element.title}:</h4>
-          <input
-            type={element.type}
-            name={inputName[index]}
-            defaultValue={element.title}
-            onChange={(event) => inputStoreHandler(event)}
-          ></input>
+          {content}
         </li>
       );
     });
   };
 
-  const editHandler = () => {
+  // gets saved input to be edited
+  const getEditHandler = (e) => {
+    setEditSaved({ edit: true });
     let newArr = [...savedStore];
     console.log(newArr);
+    let newIndexedArr = newArr.map((el) => {
+      return el.id;
+    });
+    console.log(newIndexedArr);
+    console.log(e.target.id);
+    let saved = newArr[newIndexedArr.indexOf(e.target.id * 1)];
+    console.log(saved);
+    setEditStore(saved);
+  };
+
+  const setEditHandler = (event) => {
+    let name = event.target.name;
+    let value = event.target.value;
+    setEditStore({
+      ...editStore,
+      [name]: value,
+    });
   };
 
   // useEffect(() => {
@@ -75,7 +115,7 @@ const CvInputs = (props) => {
         place={el.location}
         id={el.id}
         key={el.id}
-        click={editHandler}
+        click={(e) => getEditHandler(e)}
       />
     ));
 
@@ -118,17 +158,54 @@ const CvInputs = (props) => {
                 let name = e.target[i].name;
                 let value = e.target[i].value;
                 newData = { ...newData, [name]: value };
+                // e.target[i].value = '';
               }
             }
 
-            newData = { ...newData, id: new Date().getTime() };
+            // newData = { ...newData, id: new Date().getTime() };
             // setInputStore({
             //   ...inputStore,
             //   data: { ...newData },
             // });
 
-            setSavedStore([...savedStore, newData]);
+            if (editSaved.edit) {
+              console.log('IFFFF EDDDITTT');
+              let inputId = editStore.id;
+              let newArr = [...savedStore];
+              console.log(newArr);
+              let newIndexedArr = newArr.map((el) => {
+                return el.id;
+              });
+              console.log(newIndexedArr);
+              console.log(e.target.id);
+              let saved = newIndexedArr.indexOf(inputId * 1);
+              console.log(
+                saved,
+                '*************************************************'
+              );
+              newArr.splice(saved, 1, editStore);
+              console.log(
+                newArr,
+                '********/***************/**************************'
+              );
+              // newData = { ...newArr };
+              console.log(newData, '54655456456******************************');
+              setSavedStore([...newArr]);
+            } else {
+              newData = { ...newData, id: new Date().getTime() };
+              setSavedStore([...savedStore, newData]);
+            }
 
+            // setSavedStore([...savedStore, newData]);
+            setEditStore({
+              title: '',
+              location: '',
+              qualification: '',
+              description: '',
+              id: '',
+            });
+
+            setEditSaved({ edit: false });
             // savedStoreHandler();
           }}
         >

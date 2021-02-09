@@ -9,6 +9,7 @@ const button = (props) => {
     <button
       className={[btnActiveClass, classes[props.btnType]].join(' ')}
       onClick={props.click}
+      id={props.id}
     >
       {props.btnLabel}
     </button>
