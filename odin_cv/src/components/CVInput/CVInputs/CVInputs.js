@@ -9,8 +9,6 @@ import classes from './CVInputs.module.css';
 // TODO: REFACTOR ADD UTILITIES
 
 const CvInputs = (props) => {
-  let content;
-
   // STATE
   // *** ?
   const [inputStore, setInputStore] = useState({
@@ -56,7 +54,7 @@ const CvInputs = (props) => {
   };
 
   const renderInputHandler = (inputForm, inputName) => {
-    content = inputForm.map((element, index) => {
+    return inputForm.map((element, index) => {
       const copyEditStore = { ...editStore };
       const initialValue = copyEditStore[Object.keys(copyEditStore)[index]];
 
@@ -107,8 +105,6 @@ const CvInputs = (props) => {
     ));
   };
 
-  renderInputHandler(props.inputForm, props.inputName, props.storeName);
-
   return (
     <React.Fragment>
       <div className={`${classes.cvInputs}`}>
@@ -154,7 +150,13 @@ const CvInputs = (props) => {
             setEditSaved({ edit: false });
           }}
         >
-          <ul className={classes.cvInputs__content}>{content}</ul>
+          <ul className={classes.cvInputs__content}>
+            {renderInputHandler(
+              props.inputForm,
+              props.inputName,
+              props.storeName
+            )}
+          </ul>
           <Button
             btnType={'btnAdd'}
             btnLabel={'ADD'}
