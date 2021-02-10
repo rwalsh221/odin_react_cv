@@ -55,8 +55,6 @@ const CvInputs = (props) => {
     setSavedStore(newSavedStore);
   };
 
-  // TODO: NEED TO TRIGGER ONCHANGE EVENT TO STORE VALUE PROP.
-
   const renderInputHandler = (inputForm, inputName) => {
     content = inputForm.map((element, index) => {
       const copyEditStore = { ...editStore };
@@ -98,7 +96,7 @@ const CvInputs = (props) => {
   };
 
   const renderSavedCvInputHandler = (arr) => {
-    let savedInputContent = arr.map((el) => (
+    return arr.map((el) => (
       <SavedCvInput
         title={el.title}
         place={el.location}
@@ -107,8 +105,6 @@ const CvInputs = (props) => {
         click={(e) => getEditHandler(e)}
       />
     ));
-
-    return savedInputContent;
   };
 
   renderInputHandler(props.inputForm, props.inputName, props.storeName);
