@@ -6,21 +6,13 @@ import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
-// TODO: REFACTOR ADD UTILITIES
-
 const CvInputs = (props) => {
   // STATE
-  // *** ?
-  const [inputStore, setInputStore] = useState({
-    storeName: props.storeName,
-    data: {},
-  });
-
   const [savedStore, setSavedStore] = useState([]);
 
-  const [editSaved, setEditSaved] = useState({ edit: false });
+  const [isEdit, setIsEdit] = useState({ edit: false });
 
-  const [editStore, setEditStore] = useState({
+  const [inputStore, setInputStore] = useState({
     title: '',
     location: '',
     qualification: '',
@@ -28,34 +20,9 @@ const CvInputs = (props) => {
     id: '',
   });
 
-  // TODO: FIND WAY TO INIT EDITSTORE WITH PROPS INPUT NAME
-  // useEffect(() => {
-  //   for (let i = 0; i < props.inputName.length; i++) {
-  //     setEditSaved({ ...editStore, [props.inputName[i]]: '' });
-  //   }
-  // }, [props.inputName, editStore]);
-
-  // const inputStoreHandler = (event) => {
-  //   let name = event.target.name;
-  //   let value = event.target.value;
-  //   setInputStore({
-  //     ...inputStore,
-  //     data: { ...inputStore.data, [name]: value },
-  //   });
-  // };
-
-  const savedStoreHandler = () => {
-    const copyInputStoreObj = { ...inputStore.data, id: new Date().getTime() };
-    const copySavedStoreArr = savedStore.map((val) => val);
-
-    const newSavedStore = [...copySavedStoreArr, copyInputStoreObj];
-
-    setSavedStore(newSavedStore);
-  };
-
   const renderInputHandler = (inputForm, inputName) => {
     return inputForm.map((element, index) => {
-      const copyEditStore = { ...editStore };
+      const copyEditStore = { ...inputStore };
       const initialValue = copyEditStore[Object.keys(copyEditStore)[index]];
 
       let content = (
@@ -78,17 +45,17 @@ const CvInputs = (props) => {
 
   // gets saved input to be edited
   const getEditHandler = (e) => {
-    setEditSaved({ edit: true });
+    setIsEdit({ edit: true });
     const copySavedStore = [...savedStore];
 
-    setEditStore(getObjById(copySavedStore, e.target.id));
+    setInputStore(getObjById(copySavedStore, e.target.id));
   };
 
   const setEditHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
-    setEditStore({
-      ...editStore,
+    setInputStore({
+      ...inputStore,
       [name]: value,
     });
   };
@@ -116,14 +83,14 @@ const CvInputs = (props) => {
       }
     }
 
-    if (editSaved.edit) {
+    if (isEdit.edit) {
       editSavedHandler();
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
       setSavedStore([...savedStore, newInput]);
     }
 
-    setEditStore({
+    setInputStore({
       title: '',
       location: '',
       qualification: '',
@@ -133,7 +100,7 @@ const CvInputs = (props) => {
   };
 
   const editSavedHandler = () => {
-    const inputId = editStore.id;
+    const inputId = inputStore.id;
     const copySavedStore = [...savedStore];
 
     const inputIdArr = copySavedStore.map((el) => {
@@ -142,11 +109,11 @@ const CvInputs = (props) => {
 
     const editIndex = inputIdArr.indexOf(inputId * 1);
 
-    copySavedStore.splice(editIndex, 1, editStore);
+    copySavedStore.splice(editIndex, 1, inputStore);
 
     setSavedStore([...copySavedStore]);
 
-    setEditSaved({ edit: false });
+    setIsEdit({ edit: false });
   };
 
   return (
