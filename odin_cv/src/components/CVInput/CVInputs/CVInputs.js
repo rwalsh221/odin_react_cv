@@ -10,6 +10,7 @@ const CvInputs = (props) => {
   let content;
 
   // STATE
+  // *** ?
   const [inputStore, setInputStore] = useState({
     storeName: props.storeName,
     data: {},
@@ -34,14 +35,14 @@ const CvInputs = (props) => {
   //   }
   // }, [props.inputName, editStore]);
 
-  const inputStoreHandler = (event) => {
-    let name = event.target.name;
-    let value = event.target.value;
-    setInputStore({
-      ...inputStore,
-      data: { ...inputStore.data, [name]: value },
-    });
-  };
+  // const inputStoreHandler = (event) => {
+  //   let name = event.target.name;
+  //   let value = event.target.value;
+  //   setInputStore({
+  //     ...inputStore,
+  //     data: { ...inputStore.data, [name]: value },
+  //   });
+  // };
 
   const savedStoreHandler = () => {
     const copyInputStoreObj = { ...inputStore.data, id: new Date().getTime() };
@@ -56,14 +57,14 @@ const CvInputs = (props) => {
 
   const renderInputHandler = (inputForm, inputName) => {
     content = inputForm.map((element, index) => {
-      let mutatedit = { ...editStore };
-      let test = mutatedit[Object.keys(mutatedit)[index]];
+      const copyEditStore = { ...editStore };
+      const initialValue = copyEditStore[Object.keys(copyEditStore)[index]];
 
       let content = (
         <input
           type={element.type}
           name={inputName[index]}
-          value={test}
+          value={initialValue}
           onChange={(event) => setEditHandler(event)}
         ></input>
       );
