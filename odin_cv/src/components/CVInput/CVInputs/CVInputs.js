@@ -27,6 +27,13 @@ const CvInputs = (props) => {
     id: '',
   });
 
+  // TODO: FIND WAY TO INIT EDITSTORE WITH PROPS INPUT NAME
+  // useEffect(() => {
+  //   for (let i = 0; i < props.inputName.length; i++) {
+  //     setEditSaved({ ...editStore, [props.inputName[i]]: '' });
+  //   }
+  // }, [props.inputName, editStore]);
+
   const inputStoreHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
@@ -48,13 +55,9 @@ const CvInputs = (props) => {
   // TODO: NEED TO TRIGGER ONCHANGE EVENT TO STORE VALUE PROP.
 
   const renderInputHandler = (inputForm, inputName) => {
-    console.log('RENDER', editStore);
-    console.log(editStore[1]);
     content = inputForm.map((element, index) => {
-      console.log(element.title.toLowerCase());
       let mutatedit = { ...editStore };
       let test = mutatedit[Object.keys(mutatedit)[index]];
-      console.log(test, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
       let content = (
         <input
@@ -64,9 +67,7 @@ const CvInputs = (props) => {
           onChange={(event) => setEditHandler(event)}
         ></input>
       );
-      console.log(
-        'RENDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR'
-      );
+
       return (
         <li key={element.title} className={classes.cvInputs__subContent}>
           <h4 className={classes.cvInputs__inputHeading}>{element.title}:</h4>
@@ -80,14 +81,13 @@ const CvInputs = (props) => {
   const getEditHandler = (e) => {
     setEditSaved({ edit: true });
     let newArr = [...savedStore];
-    console.log(newArr);
+
     let newIndexedArr = newArr.map((el) => {
       return el.id;
     });
-    console.log(newIndexedArr);
-    console.log(e.target.id);
+
     let saved = newArr[newIndexedArr.indexOf(e.target.id * 1)];
-    console.log(saved);
+
     setEditStore(saved);
   };
 
@@ -99,14 +99,6 @@ const CvInputs = (props) => {
       [name]: value,
     });
   };
-
-  // useEffect(() => {
-  //   let savedInputContent = savedStore.map((el) => (
-  //     <SavedCvInput title={el.title} place={el.location} />
-  //   ));
-
-  //   return savedInputContent;
-  // }, [savedStore]);
 
   const renderSavedCvInputHandler = (arr) => {
     let savedInputContent = arr.map((el) => (
@@ -124,27 +116,6 @@ const CvInputs = (props) => {
 
   renderInputHandler(props.inputForm, props.inputName, props.storeName);
 
-  // let form;
-
-  // if (props.type === 'employment') {
-  //   form = (
-  //     <form className={''}>
-  //       <ul className={classes.cvInputs__content}>
-  //         <li key={props.inputTitle} className={classes.cvInputs__subContent}>
-  //           <h4 className={classes.cvInputs__inputHeading}>
-  //             {props.inputTitle}:
-  //           </h4>
-  //           <input
-  //             type={'text'}
-  //             name={props.inputName[index]}
-  //             onChange={(event) => inputStoreHandler(event)}
-  //           ></input>
-  //         </li>
-  //       </ul>
-  //     </form>
-  //   );
-  // }
-
   return (
     <React.Fragment>
       <div className={`${classes.cvInputs}`}>
@@ -158,45 +129,27 @@ const CvInputs = (props) => {
                 let name = e.target[i].name;
                 let value = e.target[i].value;
                 newData = { ...newData, [name]: value };
-                // e.target[i].value = '';
               }
             }
 
-            // newData = { ...newData, id: new Date().getTime() };
-            // setInputStore({
-            //   ...inputStore,
-            //   data: { ...newData },
-            // });
-
             if (editSaved.edit) {
-              console.log('IFFFF EDDDITTT');
               let inputId = editStore.id;
               let newArr = [...savedStore];
-              console.log(newArr);
+
               let newIndexedArr = newArr.map((el) => {
                 return el.id;
               });
-              console.log(newIndexedArr);
-              console.log(e.target.id);
+
               let saved = newIndexedArr.indexOf(inputId * 1);
-              console.log(
-                saved,
-                '*************************************************'
-              );
+
               newArr.splice(saved, 1, editStore);
-              console.log(
-                newArr,
-                '********/***************/**************************'
-              );
-              // newData = { ...newArr };
-              console.log(newData, '54655456456******************************');
+
               setSavedStore([...newArr]);
             } else {
               newData = { ...newData, id: new Date().getTime() };
               setSavedStore([...savedStore, newData]);
             }
 
-            // setSavedStore([...savedStore, newData]);
             setEditStore({
               title: '',
               location: '',
@@ -206,7 +159,6 @@ const CvInputs = (props) => {
             });
 
             setEditSaved({ edit: false });
-            // savedStoreHandler();
           }}
         >
           <ul className={classes.cvInputs__content}>{content}</ul>
@@ -228,26 +180,3 @@ const CvInputs = (props) => {
 };
 
 export default CvInputs;
-
-/* <form
-onSubmit={(e) => {
-  e.preventDefault();
-  let target = e.target;
-  console.log(target.length);
-  let testArr = [];
-  for (let i = 0; i < target.length - 1; i++) {
-    testArr.push(e.target[i].value);
-    e.preventDefault();
-  }
-  console.log(e.target[3].value);
-  console.log(testArr);
-}}
->
-<ul className={classes.cvInputs__content}>{content}</ul>
-<Button
-  btnType={'btnAdd'}
-  btnLabel={personalSubmit.textContent}
-  btnSaved={personalSubmit.clicked}
-  click={(e) => personalSubmitHandler(e)}
-></Button>
-</form> */
