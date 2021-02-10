@@ -19,28 +19,30 @@ const cvInput = (props) => {
           { title: 'Place of Study', type: 'text' },
           { title: 'Qualification', type: 'text' },
           { title: 'Description', type: 'text' },
-          // 'Course Name',
-          // 'Place of Study',
-          // 'Qualification',
-          // 'Description',
         ]}
         inputName={['title', 'location', 'qualification', 'description']}
         storeName={'education'}
       />
-      {/* <CVInputs
+      <CVInputs
         heading={'Employment History'}
-        inputTitle={['Job Title', 'Company', 'Duration', 'Description']}
-        inputName={['title', 'location', 'duration', 'description']}
+        inputForm={[
+          { title: 'Job Name', type: 'text' },
+          { title: 'Place of Work', type: 'text' },
+          { title: 'Duration', type: 'text' },
+          { title: 'Description', type: 'text' },
+        ]}
+        inputName={['title', 'location', 'qualification', 'description']}
         storeName={'employment'}
       />
       <CVInputs
         heading={'Additional Skills'}
-        inputTitle={['Title', 'Description']}
-        // TODO: test render saved inputs had to change inputname description to location
-        // inputName={['title', 'location', 'description']}
+        inputForm={[
+          { title: 'Title', type: 'text' },
+          { title: 'Description', type: 'text' },
+        ]}
         inputName={['title', 'location']}
         storeName={'additional'}
-      /> */}
+      />
     </main>
   );
 };
