@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { getObjById } from '../../../utilities/utilities';
+
 import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
@@ -81,15 +83,9 @@ const CvInputs = (props) => {
   // gets saved input to be edited
   const getEditHandler = (e) => {
     setEditSaved({ edit: true });
-    let newArr = [...savedStore];
+    const copySavedStore = [...savedStore];
 
-    let newIndexedArr = newArr.map((el) => {
-      return el.id;
-    });
-
-    let saved = newArr[newIndexedArr.indexOf(e.target.id * 1)];
-
-    setEditStore(saved);
+    setEditStore(getObjById(copySavedStore, e.target.id));
   };
 
   const setEditHandler = (event) => {
