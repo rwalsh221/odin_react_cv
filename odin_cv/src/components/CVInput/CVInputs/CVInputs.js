@@ -105,49 +105,57 @@ const CvInputs = (props) => {
     ));
   };
 
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    let newInput = {};
+    for (let i = 0; i < e.target.length; i++) {
+      if (e.target[i].tagName === 'INPUT') {
+        const name = e.target[i].name;
+        const value = e.target[i].value;
+        newInput = { ...newInput, [name]: value };
+      }
+    }
+
+    if (editSaved.edit) {
+      editSavedHandler();
+    } else {
+      newInput = { ...newInput, id: new Date().getTime() };
+      setSavedStore([...savedStore, newInput]);
+    }
+
+    setEditStore({
+      title: '',
+      location: '',
+      qualification: '',
+      description: '',
+      id: '',
+    });
+  };
+
+  const editSavedHandler = () => {
+    const inputId = editStore.id;
+    const copySavedStore = [...savedStore];
+
+    const inputIdArr = copySavedStore.map((el) => {
+      return el.id;
+    });
+
+    const editIndex = inputIdArr.indexOf(inputId * 1);
+
+    copySavedStore.splice(editIndex, 1, editStore);
+
+    setSavedStore([...copySavedStore]);
+
+    setEditSaved({ edit: false });
+  };
+
   return (
     <React.Fragment>
       <div className={`${classes.cvInputs}`}>
         <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            let newData = {};
-            for (let i = 0; i < e.target.length; i++) {
-              if (e.target[i].tagName === 'INPUT') {
-                let name = e.target[i].name;
-                let value = e.target[i].value;
-                newData = { ...newData, [name]: value };
-              }
-            }
-
-            if (editSaved.edit) {
-              let inputId = editStore.id;
-              let newArr = [...savedStore];
-
-              let newIndexedArr = newArr.map((el) => {
-                return el.id;
-              });
-
-              let saved = newIndexedArr.indexOf(inputId * 1);
-
-              newArr.splice(saved, 1, editStore);
-
-              setSavedStore([...newArr]);
-            } else {
-              newData = { ...newData, id: new Date().getTime() };
-              setSavedStore([...savedStore, newData]);
-            }
-
-            setEditStore({
-              title: '',
-              location: '',
-              qualification: '',
-              description: '',
-              id: '',
-            });
-
-            setEditSaved({ edit: false });
+            formSubmitHandler(e);
           }}
         >
           <ul className={classes.cvInputs__content}>
