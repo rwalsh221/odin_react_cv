@@ -6,12 +6,13 @@ import classes from './SavedCvInputs.module.css';
 const SavedCvInput = (props) => {
   const [edit, setEdit] = useState({ style: '', content: 'EDIT' });
 
-  const editHandler = () => {
-    if (edit.style === '') {
-      setEdit({ style: '#5f2114', content: 'DEL' });
-    } else {
-      setEdit({ style: '', content: 'EDIT' });
-    }
+  if (!props.edit && edit.style === '#5f2114') {
+    setEdit({ style: '', content: 'EDIT' });
+  }
+
+  const editHandler = (e) => {
+    props.click(e);
+    setEdit({ style: '#5f2114', content: 'DEL' });
   };
 
   return (
@@ -26,7 +27,7 @@ const SavedCvInput = (props) => {
       <Button
         btnType={'btnEdit'}
         btnLabel={edit.content}
-        click={props.click}
+        click={(e) => editHandler(e)}
         id={props.id}
       />
     </div>

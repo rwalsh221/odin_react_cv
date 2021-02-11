@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { getObjById } from '../../../utilities/utilities';
 
@@ -6,11 +6,14 @@ import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
+// TODO: ADD VALIDATION LAST THING!!
+// TODO: ADD DELETE FUNCTION
+// TODO: RENDER FINISHED CV
 const CvInputs = (props) => {
   // STATE
   const [savedStore, setSavedStore] = useState([]);
 
-  const [isEdit, setIsEdit] = useState({ edit: false });
+  const [isEdit, setIsEdit] = useState(false);
 
   const [inputStore, setInputStore] = useState({
     title: '',
@@ -45,10 +48,37 @@ const CvInputs = (props) => {
 
   // gets saved input to be edited
   const getEditHandler = (e) => {
-    setIsEdit({ edit: true });
-    const copySavedStore = [...savedStore];
+    setIsEdit(true);
 
-    setInputStore(getObjById(copySavedStore, e.target.id));
+    if (isEdit === true && e.target.textContent === 'DEL') {
+      deleteInputHandler(e);
+    } else {
+      const copySavedStore = [...savedStore];
+
+      setInputStore(getObjById(copySavedStore, e.target.id));
+    }
+  };
+
+  const deleteInputHandler = (e) => {
+    const copySavedStore = savedStore.map((element) => element);
+
+    const newIndexedArr = copySavedStore.map((element) => element.id);
+    copySavedStore.splice(newIndexedArr.indexOf(e.target.id * 1), 1);
+
+    setSavedStore([...copySavedStore]);
+    setIsEdit(false);
+
+    initInputStore();
+  };
+
+  const initInputStore = () => {
+    setInputStore({
+      title: '',
+      location: '',
+      qualification: '',
+      description: '',
+      id: '',
+    });
   };
 
   const setEditHandler = (event) => {
@@ -68,6 +98,7 @@ const CvInputs = (props) => {
         id={el.id}
         key={el.id}
         click={(e) => getEditHandler(e)}
+        edit={isEdit}
       />
     ));
   };
@@ -83,20 +114,14 @@ const CvInputs = (props) => {
       }
     }
 
-    if (isEdit.edit) {
+    if (isEdit) {
       editSavedHandler();
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
       setSavedStore([...savedStore, newInput]);
     }
 
-    setInputStore({
-      title: '',
-      location: '',
-      qualification: '',
-      description: '',
-      id: '',
-    });
+    initInputStore();
   };
 
   const editSavedHandler = () => {
@@ -113,7 +138,7 @@ const CvInputs = (props) => {
 
     setSavedStore([...copySavedStore]);
 
-    setIsEdit({ edit: false });
+    setIsEdit(false);
   };
 
   return (
@@ -132,11 +157,7 @@ const CvInputs = (props) => {
               props.storeName
             )}
           </ul>
-          <Button
-            btnType={'btnAdd'}
-            btnLabel={'ADD'}
-            // click={savedStoreHandler}
-          ></Button>
+          <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
         </form>
       </div>
       <div className={classes.cvInputs__saved}>
