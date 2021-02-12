@@ -28,7 +28,7 @@ const cvInput = (props) => {
         inputForm={[
           { title: 'Job Name', type: 'text' },
           { title: 'Place of Work', type: 'text' },
-          { title: 'Duration', type: 'text' },
+          { title: 'Duration', type: 'date' },
           { title: 'Description', type: 'text' },
         ]}
         inputName={['title', 'location', 'qualification', 'description']}

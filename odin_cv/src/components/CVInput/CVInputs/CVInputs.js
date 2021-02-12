@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import {
+  addEducation,
+  addEmployment,
+  addAdditional,
+} from '../../../reducers/CVInputsSlice/CVInputsSlice';
 
 import { getObjById } from '../../../utilities/utilities';
 
@@ -7,9 +13,14 @@ import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
-// TODO: ADD DELETE FUNCTION
+// TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFOX
 // TODO: RENDER FINISHED CV
-const CvInputs = (props) => {
+
+const mapDispatch = { addEducation, addEmployment, addAdditional };
+console.log(mapDispatch);
+
+const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
+  console.log(addEducation);
   // STATE
   const [savedStore, setSavedStore] = useState([]);
 
@@ -44,6 +55,27 @@ const CvInputs = (props) => {
         </li>
       );
     });
+  };
+
+  const reducerDispatch = (storeName, payload) => {
+    switch (storeName) {
+      case 'education':
+        console.log(storeName);
+        addEducation(payload);
+        console.log(addEducation);
+        break;
+      case 'employment':
+        console.log(storeName);
+        console.log(addEmployment);
+        addEmployment(payload);
+        break;
+      case 'additional':
+        console.log(storeName);
+        addAdditional(payload);
+        break;
+      default:
+        console.log('no switch');
+    }
   };
 
   // gets saved input to be edited
@@ -119,6 +151,7 @@ const CvInputs = (props) => {
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
       setSavedStore([...savedStore, newInput]);
+      reducerDispatch(props.storeName, newInput);
     }
 
     initInputStore();
@@ -170,4 +203,4 @@ const CvInputs = (props) => {
   );
 };
 
-export default CvInputs;
+export default connect(null, mapDispatch)(CvInputs);
