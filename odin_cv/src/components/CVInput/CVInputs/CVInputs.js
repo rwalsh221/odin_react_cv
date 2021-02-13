@@ -4,7 +4,15 @@ import {
   addEducation,
   addEmployment,
   addAdditional,
+  updateEducation,
+  updateEmployment,
+  updateAdditional,
+  deleteEducation,
+  deleteEmployment,
+  deleteAdditional,
 } from '../../../reducers/CVInputsSlice/CVInputsSlice';
+
+// import * as actionTypes from '../../../reducers/CVInputsSlice/CVInputsSlice';
 
 import { getObjById } from '../../../utilities/utilities';
 
@@ -16,11 +24,33 @@ import classes from './CVInputs.module.css';
 // TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFOX
 // TODO: RENDER FINISHED CV
 
-const mapDispatch = { addEducation, addEmployment, addAdditional };
-console.log(mapDispatch);
+//TODO: look at making cvinputs parametrs leaner.
+//TODO: init inputstore with props.inputname. for loop? or map?
 
-const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
-  console.log(addEducation);
+const mapDispatch = {
+  addEducation,
+  addEmployment,
+  addAdditional,
+  updateEducation,
+  updateEmployment,
+  updateAdditional,
+  deleteEducation,
+  deleteEmployment,
+  deleteAdditional,
+};
+
+const CvInputs = ({
+  addEducation,
+  addEmployment,
+  addAdditional,
+  updateEducation,
+  updateEmployment,
+  updateAdditional,
+  deleteEducation,
+  deleteEmployment,
+  deleteAdditional,
+  ...props
+}) => {
   // STATE
   const [savedStore, setSavedStore] = useState([]);
 
@@ -56,8 +86,9 @@ const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
       );
     });
   };
+  console.log({ renderInputHandler });
 
-  const reducerDispatch = (storeName, payload) => {
+  const dispatchSubmit = (storeName, payload) => {
     switch (storeName) {
       case 'education':
         console.log(storeName);
@@ -72,6 +103,40 @@ const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
       case 'additional':
         console.log(storeName);
         addAdditional(payload);
+        break;
+      default:
+        console.log('no switch');
+    }
+  };
+
+  const dispatchUpdate = (storeName, payload) => {
+    console.log(storeName);
+    switch (storeName) {
+      case 'education':
+        updateEducation(payload);
+        break;
+      case 'employment':
+        updateEmployment(payload);
+        break;
+      case 'additional':
+        updateAdditional(payload);
+        break;
+      default:
+        console.log('no switch');
+    }
+  };
+
+  const dispatchDelete = (storeName, payload) => {
+    console.log(storeName);
+    switch (storeName) {
+      case 'education':
+        deleteEducation(payload);
+        break;
+      case 'employment':
+        deleteEmployment(payload);
+        break;
+      case 'additional':
+        deleteAdditional(payload);
         break;
       default:
         console.log('no switch');
@@ -98,6 +163,8 @@ const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
     copySavedStore.splice(newIndexedArr.indexOf(e.target.id * 1), 1);
 
     setSavedStore([...copySavedStore]);
+    // deleteEducation(e.target.id);
+    dispatchDelete(props.storeName, e.target.id);
     setIsEdit(false);
 
     initInputStore();
@@ -151,7 +218,7 @@ const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
       setSavedStore([...savedStore, newInput]);
-      reducerDispatch(props.storeName, newInput);
+      dispatchSubmit(props.storeName, newInput);
     }
 
     initInputStore();
@@ -170,6 +237,8 @@ const CvInputs = ({ addEducation, addEmployment, addAdditional, ...props }) => {
     copySavedStore.splice(editIndex, 1, inputStore);
 
     setSavedStore([...copySavedStore]);
+
+    dispatchUpdate(props.storeName, inputStore);
 
     setIsEdit(false);
   };
