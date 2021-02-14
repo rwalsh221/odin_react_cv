@@ -1,19 +1,7 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {
-  addEducation,
-  addEmployment,
-  addAdditional,
-  updateEducation,
-  updateEmployment,
-  updateAdditional,
-  deleteEducation,
-  deleteEmployment,
-  deleteAdditional,
-} from '../../../reducers/CVInputsSlice/CVInputsSlice';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
-// import * as actionTypes from '../../../reducers/CVInputsSlice/CVInputsSlice';
-
+import * as actionTypes from './CVInputsSlice';
 import { getObjById } from '../../../utilities/utilities';
 
 import Button from '../../UI/Button/Button';
@@ -24,33 +12,17 @@ import classes from './CVInputs.module.css';
 // TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFOX
 // TODO: RENDER FINISHED CV
 
-//TODO: look at making cvinputs parametrs leaner.
 //TODO: init inputstore with props.inputname. for loop? or map?
 
 const mapDispatch = {
-  addEducation,
-  addEmployment,
-  addAdditional,
-  updateEducation,
-  updateEmployment,
-  updateAdditional,
-  deleteEducation,
-  deleteEmployment,
-  deleteAdditional,
+  ...actionTypes,
 };
 
-const CvInputs = ({
-  addEducation,
-  addEmployment,
-  addAdditional,
-  updateEducation,
-  updateEmployment,
-  updateAdditional,
-  deleteEducation,
-  deleteEmployment,
-  deleteAdditional,
-  ...props
-}) => {
+const CvInputs = (props) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(mapDispatch);
+
   // STATE
   const [savedStore, setSavedStore] = useState([]);
 
@@ -92,17 +64,14 @@ const CvInputs = ({
     switch (storeName) {
       case 'education':
         console.log(storeName);
-        addEducation(payload);
-        console.log(addEducation);
+        dispatch(actionTypes.addEducation(payload));
         break;
       case 'employment':
-        console.log(storeName);
-        console.log(addEmployment);
-        addEmployment(payload);
+        dispatch(actionTypes.addEmployment(payload));
         break;
       case 'additional':
         console.log(storeName);
-        addAdditional(payload);
+        dispatch(actionTypes.addAdditional(payload));
         break;
       default:
         console.log('no switch');
@@ -113,13 +82,13 @@ const CvInputs = ({
     console.log(storeName);
     switch (storeName) {
       case 'education':
-        updateEducation(payload);
+        dispatch(actionTypes.updateEducation(payload));
         break;
       case 'employment':
-        updateEmployment(payload);
+        dispatch(actionTypes.updateEmployment(payload));
         break;
       case 'additional':
-        updateAdditional(payload);
+        dispatch(actionTypes.updateAdditional(payload));
         break;
       default:
         console.log('no switch');
@@ -130,13 +99,13 @@ const CvInputs = ({
     console.log(storeName);
     switch (storeName) {
       case 'education':
-        deleteEducation(payload);
+        dispatch(actionTypes.deleteEducation(payload));
         break;
       case 'employment':
-        deleteEmployment(payload);
+        dispatch(actionTypes.deleteEmployment(payload));
         break;
       case 'additional':
-        deleteAdditional(payload);
+        dispatch(actionTypes.deleteAdditional(payload));
         break;
       default:
         console.log('no switch');
