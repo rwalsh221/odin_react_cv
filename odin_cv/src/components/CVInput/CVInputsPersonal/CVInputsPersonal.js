@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+
+import * as actionTypes from './CVInputsPersonalSlice';
 
 import Button from '../../UI/Button/Button';
 
 import classes from './CVInputsPersonal.module.css';
 
+const mapDispatch = {
+  ...actionTypes,
+};
+
 const CVInputsPersonal = (props) => {
+  const dispatch = useDispatch();
+
   let content;
 
   // STATE
@@ -42,6 +51,7 @@ const CVInputsPersonal = (props) => {
   const personalSubmitHandler = (e) => {
     e.preventDefault();
     setPersonalSubmit({ clicked: true, textContent: 'SAVED' });
+    dispatch(actionTypes.addPersonal({ ...personalStore }));
   };
 
   const personalEditHandler = () => {
@@ -66,4 +76,4 @@ const CVInputsPersonal = (props) => {
   );
 };
 
-export default CVInputsPersonal;
+export default connect(null, mapDispatch)(CVInputsPersonal);
