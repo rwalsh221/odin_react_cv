@@ -20,11 +20,10 @@ const mapDispatch = {
 
 const CvInputs = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  console.log(mapDispatch);
+  const state = useSelector((state) => state.cvInputs);
+  console.log(state);
 
   // STATE
-  const [savedStore, setSavedStore] = useState([]);
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -119,20 +118,13 @@ const CvInputs = (props) => {
     if (isEdit === true && e.target.textContent === 'DEL') {
       deleteInputHandler(e);
     } else {
-      const copySavedStore = [...savedStore];
+      const copySavedStore = [...state[props.storeName]];
 
       setInputStore(getObjById(copySavedStore, e.target.id));
     }
   };
 
   const deleteInputHandler = (e) => {
-    const copySavedStore = savedStore.map((element) => element);
-
-    const newIndexedArr = copySavedStore.map((element) => element.id);
-    copySavedStore.splice(newIndexedArr.indexOf(e.target.id * 1), 1);
-
-    setSavedStore([...copySavedStore]);
-    // deleteEducation(e.target.id);
     dispatchDelete(props.storeName, e.target.id);
     setIsEdit(false);
 
@@ -186,7 +178,7 @@ const CvInputs = (props) => {
       editSavedHandler();
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
-      setSavedStore([...savedStore, newInput]);
+
       dispatchSubmit(props.storeName, newInput);
     }
 
@@ -195,7 +187,7 @@ const CvInputs = (props) => {
 
   const editSavedHandler = () => {
     const inputId = inputStore.id;
-    const copySavedStore = [...savedStore];
+    const copySavedStore = [...state[props.storeName]];
 
     const inputIdArr = copySavedStore.map((el) => {
       return el.id;
@@ -204,8 +196,6 @@ const CvInputs = (props) => {
     const editIndex = inputIdArr.indexOf(inputId * 1);
 
     copySavedStore.splice(editIndex, 1, inputStore);
-
-    setSavedStore([...copySavedStore]);
 
     dispatchUpdate(props.storeName, inputStore);
 
@@ -235,7 +225,7 @@ const CvInputs = (props) => {
         <h3
           className={classes.cvInputs__heading}
         >{`Saved ${props.heading}`}</h3>
-        {renderSavedCvInputHandler(savedStore)}
+        {renderSavedCvInputHandler(state[props.storeName])}
       </div>
     </React.Fragment>
   );
