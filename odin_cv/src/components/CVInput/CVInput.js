@@ -31,7 +31,7 @@ const cvInput = (props) => {
           { title: 'Duration', type: 'date' },
           { title: 'Description', type: 'text' },
         ]}
-        inputName={['title', 'location', 'qualification', 'description']}
+        inputName={['title', 'location', 'duration', 'description']}
         storeName={'employment'}
       />
       <CVInputs
@@ -40,7 +40,7 @@ const cvInput = (props) => {
           { title: 'Title', type: 'text' },
           { title: 'Description', type: 'text' },
         ]}
-        inputName={['title', 'location']}
+        inputName={['title', 'description']}
         storeName={'additional'}
       />
     </main>

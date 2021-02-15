@@ -21,19 +21,31 @@ const mapDispatch = {
 const CvInputs = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cvInputs);
-  console.log(state);
+
+  const initInputStore = () => {
+    let initInputStoreObj = {};
+    for (let i = 0; i < props.inputName.length; i++) {
+      initInputStoreObj = { ...initInputStoreObj, [props.inputName[i]]: '' };
+    }
+    initInputStoreObj = { ...initInputStoreObj, id: '' };
+    return initInputStoreObj;
+  };
 
   // STATE
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const [inputStore, setInputStore] = useState({
-    title: '',
-    location: '',
-    qualification: '',
-    description: '',
-    id: '',
-  });
+  const [inputStore, setInputStore] = useState(initInputStore());
+
+  const clearInputStore = () => {
+    const copyInputStore = { ...inputStore };
+    let newInputStore = {};
+    for (const key in copyInputStore) {
+      newInputStore = { ...newInputStore, [key]: '' };
+    }
+
+    setInputStore({ ...newInputStore });
+  };
 
   const renderInputHandler = (inputForm, inputName) => {
     return inputForm.map((element, index) => {
@@ -57,19 +69,16 @@ const CvInputs = (props) => {
       );
     });
   };
-  console.log({ renderInputHandler });
 
   const dispatchSubmit = (storeName, payload) => {
     switch (storeName) {
       case 'education':
-        console.log(storeName);
         dispatch(actionTypes.addEducation(payload));
         break;
       case 'employment':
         dispatch(actionTypes.addEmployment(payload));
         break;
       case 'additional':
-        console.log(storeName);
         dispatch(actionTypes.addAdditional(payload));
         break;
       default:
@@ -95,7 +104,6 @@ const CvInputs = (props) => {
   };
 
   const dispatchDelete = (storeName, payload) => {
-    console.log(storeName);
     switch (storeName) {
       case 'education':
         dispatch(actionTypes.deleteEducation(payload));
@@ -128,17 +136,7 @@ const CvInputs = (props) => {
     dispatchDelete(props.storeName, e.target.id);
     setIsEdit(false);
 
-    initInputStore();
-  };
-
-  const initInputStore = () => {
-    setInputStore({
-      title: '',
-      location: '',
-      qualification: '',
-      description: '',
-      id: '',
-    });
+    clearInputStore();
   };
 
   const setEditHandler = (event) => {
@@ -182,7 +180,7 @@ const CvInputs = (props) => {
       dispatchSubmit(props.storeName, newInput);
     }
 
-    initInputStore();
+    clearInputStore();
   };
 
   const editSavedHandler = () => {
