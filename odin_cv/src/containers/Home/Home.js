@@ -3,7 +3,7 @@ import React from 'react';
 import HeaderNavigation from '../../components/HeaderNavigation/HeaderNavigation';
 import CVInput from '../../components/CVInput/CVInput';
 
-const Layout = (props) => {
+const Home = (props) => {
   return (
     <React.Fragment>
       <HeaderNavigation />
@@ -12,4 +12,4 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+export default Home;

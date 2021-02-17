@@ -12,8 +12,6 @@ import classes from './CVInputs.module.css';
 // TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFOX
 // TODO: RENDER FINISHED CV
 
-//TODO: init inputstore with props.inputname. for loop? or map?
-
 const mapDispatch = {
   ...actionTypes,
 };
