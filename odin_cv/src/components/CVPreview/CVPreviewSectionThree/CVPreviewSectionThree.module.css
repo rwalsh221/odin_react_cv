@@ -1,0 +1,56 @@
+.sectionThree {
+  display: grid;
+  grid-template-rows: repeat(4 max-content);
+  background-color: var(--main-background-color-light);
+  box-shadow: 2px 2px 2px inset #522116;
+  padding: 3rem;
+}
+
+.employmentHeading {
+  margin-bottom: 2rem;
+}
+
+.subEmploymentContainer {
+  display: grid;
+  grid-template-columns: repeat(3 1fr);
+  grid-template-rows: repeat(2 max-content);
+  margin-bottom: 2rem;
+}
+
+.employmentDate {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin-right: 1rem;
+}
+
+.employmentTitle {
+  grid-row-start: 1;
+  grid-column-start: 2;
+}
+
+.employmentEmployer {
+  grid-row-start: 1;
+  grid-column-start: 3;
+  justify-self: end;
+}
+
+.employmentTitle {
+  grid-row-start: 1;
+  grid-column-start: 2;
+}
+
+.employmentDescription {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.subEducationContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.educationHeading {
+  margin-bottom: 2rem;
+}

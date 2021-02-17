@@ -1,4 +1,30 @@
 .main {
-  min-height: 100vh;
+  min-height: max-content;
   background-color: var(--main-background-color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.previewCV {
+  margin: 2rem 0;
+  width: 90%;
+  border: 2px solid var(--main-text-color);
+  min-height: max-content;
+  display: grid;
+  grid-template-columns: 0.5fr 3fr 5fr;
+}
+.sectionOne {
+  background-color: var(--main-text-color);
+}
+
+.test2 {
+  background-color: var(--main-background-color);
+  border-right: 2px solid var(--main-text-color);
+}
+
+.test3 {
+  background-color: var(--main-background-color-light);
+  box-shadow: 2px 2px 2px inset #522116;
 }

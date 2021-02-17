@@ -1,0 +1,52 @@
+.sectionTwo {
+  display: grid;
+  grid-template-rows: repeat(4 max-content);
+  border-right: 2px solid var(--main-text-color);
+  background-color: var(--main-background-color);
+}
+
+.imageContainer,
+.personalContainer,
+.skillsContainer,
+.refContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+.imagePersonal {
+  display: block;
+  margin: 0.5rem auto;
+  border-radius: 100%;
+  border: 2px solid var(--main-text-color);
+}
+
+.personalContainer {
+  /* background-color: indigo; */
+}
+
+.skillsContainer {
+  /* background-color: cornflowerblue; */
+}
+
+.refContainer {
+  /* background-color: crimson; */
+}
+
+ul {
+  list-style: none;
+}
+
+.heading {
+  margin: 5rem 0;
+}
+
+.subHeading {
+  margin: 2rem 0;
+}
+
+.subContent {
+  font-size: 2rem;
+}
