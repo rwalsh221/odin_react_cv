@@ -9,8 +9,22 @@ const cvInput = (props) => {
   return (
     <main className={classes.CVInput} id={classes.test}>
       <CVInputsPersonal
-        inputTitle={['Name', 'Address', 'email', 'Phone Number']}
-        inputName={['name', 'address', 'email', 'phoneNumber']}
+        inputTitle={[
+          'Name',
+          'Address: Street',
+          'Address: City',
+          'email',
+          'Phone Number',
+          'Current Role',
+        ]}
+        inputName={[
+          'name',
+          'addressStreet',
+          'addressCity',
+          'email',
+          'phoneNumber',
+          'currentRole',
+        ]}
       />
       <CVInputs
         heading={'Education History'}

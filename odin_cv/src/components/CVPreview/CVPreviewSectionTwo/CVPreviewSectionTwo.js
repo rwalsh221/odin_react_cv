@@ -17,15 +17,22 @@ const cvPreview = (props) => {
         <ul>
           <li>
             <h4 className={classes.subHeading}>Address</h4>
-            <p className={classes.subContent}>Baltimore</p>
+            <p className={classes.subContent}>
+              {props.statePersonalAddressStreet}
+            </p>
+            <p className={classes.subContent}>
+              {props.statePersonalAddressCity}
+            </p>
           </li>
           <li>
             <h4 className={classes.subHeading}>Phone</h4>
-            <p className={classes.subContent}>123456789</p>
+            <p className={classes.subContent}>
+              {props.statePersonalPhoneNumber}
+            </p>
           </li>
           <li>
             <h4 className={classes.subHeading}>Email</h4>
-            <p className={classes.subContent}>email@email.com</p>
+            <p className={classes.subContent}>{props.statePersonalEmail}</p>
           </li>
           <li></li>
           <li></li>

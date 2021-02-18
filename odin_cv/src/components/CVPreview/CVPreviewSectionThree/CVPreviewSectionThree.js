@@ -4,11 +4,12 @@ import { loremIpsum } from 'react-lorem-ipsum';
 import classes from './CVPreviewSectionThree.module.css';
 
 const cvPreview = (props) => {
+  console.log(props.stateCurrentRole);
   return (
     <section className={classes.sectionThree}>
       <div className={classes.nameContainer}>
-        <h2 className={classes.nameHeading}>Lester Freeman</h2>
-        <p className={classes.nameContent}>Private Detective</p>
+        <h2 className={classes.nameHeading}>{props.statePersonalName}</h2>
+        <p className={classes.nameContent}>{props.statePersonalCurrentRole}</p>
       </div>
       <div className={classes.statementContainer}>
         <p>{loremIpsum({ p: 1 })}</p>

@@ -1,20 +1,45 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import CVPreviewSectionTwo from './CVPreviewSectionTwo/CVPreviewSectionTwo';
 import CVPreviewSectionThree from './CVPreviewSectionThree/CVPreviewSectionThree';
 
 import classes from './CVPreview.module.css';
 
-const cvPreview = (props) => {
+const CVPreview = (props) => {
+  const state = useSelector((state) => state);
+
+  const statePersonal = state.cvInputsPersonal;
+  const stateEducation = state.cvInputs.education;
+  const stateEmployment = state.cvInputs.employment;
+  const stateAdditional = state.cvInputs.additional;
+
+  console.log(state);
+  console.log(statePersonal);
+  console.log(stateEducation);
+  console.log(stateEmployment);
+  console.log(stateAdditional);
+
   return (
     <main className={classes.main}>
       <div className={classes.previewCV}>
-        <div className={classes.sectionOne}></div>
-        <CVPreviewSectionTwo />
-        <CVPreviewSectionThree />
+        <section className={classes.sectionOne}></section>
+        <CVPreviewSectionTwo
+          // PROPS FOR STATEPERSONAL
+          statePersonalAddressStreet={statePersonal.addressStreet}
+          statePersonalAddressCity={statePersonal.addressCity}
+          statePersonalPhoneNumber={statePersonal.phoneNumber}
+          statePersonalEmail={statePersonal.email}
+          // PROPS FOR STATEADDITIONAL
+        />
+        <CVPreviewSectionThree
+          // PROPS FOR STATEPERSONAL
+          statePersonalName={statePersonal.name}
+          statePersonalCurrentRole={statePersonal.currentRole}
+        />
       </div>
     </main>
   );
 };
 
-export default cvPreview;
+export default CVPreview;

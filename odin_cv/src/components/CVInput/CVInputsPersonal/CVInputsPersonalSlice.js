@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const cvInputsPersonalSlice = createSlice({
   name: 'cvInputsPersonal',
-  initialState: null,
+  initialState: { storeName: 'personalStore' },
   reducers: {
     addPersonal: (state, action) => (state = action.payload),
   },
