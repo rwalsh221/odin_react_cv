@@ -12,19 +12,23 @@ const HeaderNavigation = (props) => {
   return (
     <header>
       <Link to="/home">
-        <button>HOME</button>
+        <h1 className={classes.mainHeading}>ODIN-Project-React-CV</h1>
       </Link>
-      <h1 className={classes.mainHeading}>ODIN-Project-React-CV</h1>
-      <Link to="/preview">
-        <button
-          onClick={() => {
-            console.log(state);
-            setLocalStorage('fullState', state);
-          }}
-        >
-          PREVIEW CV
-        </button>
-      </Link>
+      <nav className={classes.navBar}>
+        <Link to="/home">
+          <button className={classes.navButton}>HOME</button>
+        </Link>
+        <Link to="/preview">
+          <button
+            className={classes.navButton}
+            onClick={() => {
+              setLocalStorage('fullState', state);
+            }}
+          >
+            PREVIEW CV
+          </button>
+        </Link>
+      </nav>
     </header>
   );
 };

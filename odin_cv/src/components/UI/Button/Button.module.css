@@ -2,9 +2,6 @@ button {
   width: 8rem;
   border-style: none;
 }
-.test {
-  background-color: blue !important;
-}
 
 .btnAdd,
 .btnEdit {

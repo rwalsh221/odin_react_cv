@@ -72,6 +72,11 @@ input {
   width: 80%;
 }
 
+label {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
 @media (max-width: 910px) {
   h3 {
     font-size: 2rem;
