@@ -34,6 +34,7 @@ const cvInputsSlice = createSlice({
       state.employment.push({ ...payload });
     },
     addAdditional(state, action) {
+      console.log(state);
       const payload = action.payload;
       state.additional.push({ ...payload });
     },
@@ -55,6 +56,7 @@ const cvInputsSlice = createSlice({
     deleteAdditional(state, action) {
       deleteInput(state, action, stateObject.additional);
     },
+    initState: (state, action) => (state = action.payload),
   },
 });
 
@@ -68,6 +70,7 @@ export const {
   deleteEducation,
   deleteEmployment,
   deleteAdditional,
+  initState,
 } = cvInputsSlice.actions;
 
 export default cvInputsSlice.reducer;

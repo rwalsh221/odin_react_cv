@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 import * as actionTypes from './CVInputsSlice';
-import { getObjById } from '../../../utilities/utilities';
+import { getObjById, retrieveLocalStorage } from '../../../utilities/utilities';
 
 import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
@@ -11,6 +11,7 @@ import classes from './CVInputs.module.css';
 // TODO: ADD VALIDATION LAST THING!!
 // TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFO
 // TODO: LOCAL STORAGE
+// TODO: FIX NAV. REMOVE BUTTONS FROM HEADER
 
 const mapDispatch = {
   ...actionTypes,

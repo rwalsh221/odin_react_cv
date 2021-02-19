@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 import * as actionTypes from './CVInputsPersonalSlice';
 
@@ -14,6 +14,8 @@ const mapDispatch = {
 const CVInputsPersonal = (props) => {
   const dispatch = useDispatch();
 
+  const savedState = useSelector((state) => state.cvInputsPersonal);
+
   let content;
 
   // STATE
@@ -22,11 +24,14 @@ const CVInputsPersonal = (props) => {
     textContent: 'ADD',
   });
 
-  const [personalStore, setPersonalStore] = useState({
-    storeName: 'personalStore',
-  });
+  const [personalStore, setPersonalStore] = useState();
+
+  useEffect(() => {
+    setPersonalStore({ ...savedState });
+  }, [setPersonalStore, savedState]);
 
   const renderInputHandler = (inputTitle, inputName) => {
+    const copyPersonalStore = { ...personalStore };
     content = inputTitle.map((inputTitle, index) => {
       return (
         <li key={inputTitle} className={classes.cvInputs__subContent}>
@@ -36,6 +41,11 @@ const CVInputsPersonal = (props) => {
             name={inputName[index]}
             onClick={personalEditHandler}
             onChange={(event) => inputContentHandler(event)}
+            value={
+              copyPersonalStore[inputName[index]]
+                ? copyPersonalStore[inputName[index]]
+                : ''
+            }
           ></input>
         </li>
       );
