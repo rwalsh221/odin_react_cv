@@ -9,8 +9,8 @@ import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
-// TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFOX
-// TODO: RENDER FINISHED CV
+// TODO: ADD LABEL TO INPUT FOR ACCSESSIBILTY REMOVE H4 SEE FIReFO
+// TODO: LOCAL STORAGE
 
 const mapDispatch = {
   ...actionTypes,

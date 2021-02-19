@@ -3,6 +3,15 @@ import React from 'react';
 import classes from './CVPreviewSectionTwo.module.css';
 
 const cvPreview = (props) => {
+  const additionalContent = props.stateAdditional.map((element) => {
+    return (
+      <li key={element.title}>
+        <h4 className={classes.subHeading}>{element.title}</h4>
+        <p className={classes.subContent}>Level: {element.level}</p>
+      </li>
+    );
+  });
+
   return (
     <section className={classes.sectionTwo}>
       <div className={classes.imageContainer}>
@@ -16,7 +25,7 @@ const cvPreview = (props) => {
         <h3 className={classes.heading}>Contact</h3>
         <ul>
           <li>
-            <h4 className={classes.subHeading}>Address</h4>
+            <h4 className={classes.subHeading}>Address:</h4>
             <p className={classes.subContent}>
               {props.statePersonalAddressStreet}
             </p>
@@ -25,35 +34,20 @@ const cvPreview = (props) => {
             </p>
           </li>
           <li>
-            <h4 className={classes.subHeading}>Phone</h4>
+            <h4 className={classes.subHeading}>Phone:</h4>
             <p className={classes.subContent}>
               {props.statePersonalPhoneNumber}
             </p>
           </li>
           <li>
-            <h4 className={classes.subHeading}>Email</h4>
+            <h4 className={classes.subHeading}>Email:</h4>
             <p className={classes.subContent}>{props.statePersonalEmail}</p>
           </li>
-          <li></li>
-          <li></li>
         </ul>
       </div>
       <div className={classes.skillsContainer}>
         <h3 className={classes.heading}>Additional Skills</h3>
-        <ul>
-          <li>
-            <h4 className={classes.subHeading}>Wire Tapping</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Cribbing Numbers</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Making Doll House Furniture</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>
-        </ul>
+        <ul>{additionalContent}</ul>
       </div>
       <div className={classes.refContainer}>
         <h3 className={classes.heading}>References</h3>
@@ -77,3 +71,16 @@ const cvPreview = (props) => {
 };
 
 export default cvPreview;
+
+/*<li>
+            <h4 className={classes.subHeading}>Wire Tapping</h4>
+            <p className={classes.subContent}>Level: Advanced</p>
+          </li>
+          <li>
+            <h4 className={classes.subHeading}>Cribbing Numbers</h4>
+            <p className={classes.subContent}>Level: Advanced</p>
+          </li>
+          <li>
+            <h4 className={classes.subHeading}>Making Doll House Furniture</h4>
+            <p className={classes.subContent}>Level: Advanced</p>
+          </li>*/

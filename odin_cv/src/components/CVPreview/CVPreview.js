@@ -31,11 +31,16 @@ const CVPreview = (props) => {
           statePersonalPhoneNumber={statePersonal.phoneNumber}
           statePersonalEmail={statePersonal.email}
           // PROPS FOR STATEADDITIONAL
+          stateAdditional={stateAdditional}
         />
         <CVPreviewSectionThree
           // PROPS FOR STATEPERSONAL
           statePersonalName={statePersonal.name}
           statePersonalCurrentRole={statePersonal.currentRole}
+          // PROPS FOR STATEEDUCATION
+          stateEducation={stateEducation}
+          // PROPS FOR STATEEMPLOYMENT
+          stateEmployment={stateEmployment}
         />
       </div>
     </main>

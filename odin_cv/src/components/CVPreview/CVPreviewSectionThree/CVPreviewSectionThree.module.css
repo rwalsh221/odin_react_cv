@@ -1,6 +1,6 @@
 .sectionThree {
   display: grid;
-  grid-template-rows: repeat(2 1fr) repeat(2 2fr);
+  grid-template-rows: 1fr 2fr repeat(2, 3fr);
   background-color: var(--main-background-color-light);
   box-shadow: 2px 2px 2px inset #522116;
   padding: 3rem;
@@ -14,8 +14,8 @@
 
 .subEmploymentContainer {
   display: grid;
-  grid-template-columns: repeat(3 1fr);
-  grid-template-rows: repeat(2 max-content);
+  grid-template-columns: max-content repeat(2, 1fr);
+  grid-template-rows: repeat(2, max-content);
   margin-bottom: 2rem;
   padding: 1rem;
   border-bottom: 1px solid var(--main-text-color);
@@ -55,4 +55,8 @@
   margin-bottom: 2rem;
   padding: 1rem;
   border-bottom: 1px solid var(--main-text-color);
+}
+
+.statementContainer {
+  font-size: 1.5rem;
 }

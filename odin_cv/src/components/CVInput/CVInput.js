@@ -32,9 +32,9 @@ const cvInput = (props) => {
           { title: 'Course Name', type: 'text' },
           { title: 'Place of Study', type: 'text' },
           { title: 'Qualification', type: 'text' },
-          { title: 'Description', type: 'text' },
+          { title: 'Date', type: 'date' },
         ]}
-        inputName={['title', 'location', 'qualification', 'description']}
+        inputName={['title', 'location', 'qualification', 'date']}
         storeName={'education'}
       />
       <CVInputs
@@ -45,16 +45,16 @@ const cvInput = (props) => {
           { title: 'Duration', type: 'date' },
           { title: 'Description', type: 'text' },
         ]}
-        inputName={['title', 'location', 'duration', 'description']}
+        inputName={['title', 'location', 'date', 'description']}
         storeName={'employment'}
       />
       <CVInputs
         heading={'Additional Skills'}
         inputForm={[
           { title: 'Title', type: 'text' },
-          { title: 'Description', type: 'text' },
+          { title: 'Level', type: 'text' },
         ]}
-        inputName={['title', 'description']}
+        inputName={['title', 'level']}
         storeName={'additional'}
       />
     </main>
