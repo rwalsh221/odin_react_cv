@@ -48,17 +48,39 @@ const CvInputs = (props) => {
 
   const renderInputHandler = (inputForm, inputName) => {
     return inputForm.map((element, index) => {
-      const copyEditStore = { ...inputStore };
-      const initialValue = copyEditStore[Object.keys(copyEditStore)[index]];
+      const copyInputStore = { ...inputStore };
+      const initialValue = copyInputStore[Object.keys(copyInputStore)[index]];
 
-      let content = (
-        <input
-          type={element.type}
-          name={inputName[index]}
-          value={initialValue}
-          onChange={(event) => setEditHandler(event)}
-        ></input>
-      );
+      let content;
+      // render content for drop down
+      if (element.option === true) {
+        content = (
+          <select
+            name={inputName[index]}
+            value={initialValue}
+            onChange={(event) => setEditHandler(event)}
+            id={inputName[index]}
+          >
+            {element.optionValue.map((element, index) => {
+              return (
+                <option key={element} value={element}>
+                  {element}
+                </option>
+              );
+            })}
+          </select>
+        );
+        // render content for input box
+      } else {
+        content = (
+          <input
+            type={element.type}
+            name={inputName[index]}
+            value={initialValue}
+            onChange={(event) => setEditHandler(event)}
+          ></input>
+        );
+      }
 
       return (
         <li key={element.title} className={classes.cvInputs__subContent}>
@@ -169,7 +191,7 @@ const CvInputs = (props) => {
     e.preventDefault();
     let newInput = {};
     for (let i = 0; i < e.target.length; i++) {
-      if (e.target[i].tagName === 'INPUT') {
+      if (e.target[i].tagName === 'INPUT' || 'SELECT') {
         const name = e.target[i].name;
         const value = e.target[i].value;
         newInput = { ...newInput, [name]: value };
