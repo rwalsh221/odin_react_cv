@@ -9,8 +9,9 @@ import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
-// TODO: FIX NAV. REMOVE BUTTONS FROM HEADER
-// TODO: REFACTOR LOCAL STORAGE FUNCTION
+// TODO: REFACTOR LOCAL STORAGE FUNCTION. CUSTOM HOOK ?
+// TODO: DROP DOWN BOX FOR ADDITIOANL SKILLS
+// TODO: RESPONSIVE PREVIEW
 
 const mapDispatch = {
   ...actionTypes,
