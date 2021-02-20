@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   border: 2px solid var(--main-text-color);
-  margin-right: -5px;
+  margin: 1rem 0;
 }
 
 .savedCvInput__content,
@@ -24,6 +24,16 @@
 
 .savedCvInput__content {
   color: var(--main-text-color);
+}
+
+.savedCvInput__content h4 {
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 90%;
+}
+
+.savedCvInput__content h4:not(:last-of-type) {
+  border-bottom: 2px solid var(--main-text-color);
 }
 
 .savedCvInput__contentRed {

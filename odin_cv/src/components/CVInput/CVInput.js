@@ -102,10 +102,9 @@ const CVInput = (props) => {
         inputForm={[
           { title: 'Title', type: 'text' },
           {
-            title: 'Level',
-            type: 'text',
+            title: 'Skill Level:',
             option: true,
-            optionValue: ['low', 'medium', 'high'],
+            optionValue: ['beginner', 'intermediate', 'advanced'],
           },
         ]}
         inputName={['title', 'level']}

@@ -10,7 +10,7 @@ import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
 // TODO: REFACTOR LOCAL STORAGE FUNCTION. CUSTOM HOOK ?
-// TODO: DROP DOWN BOX FOR ADDITIOANL SKILLS
+// TODO: STYLE INPUT BOX
 // TODO: RESPONSIVE PREVIEW
 
 const mapDispatch = {
@@ -64,7 +64,7 @@ const CvInputs = (props) => {
             {element.optionValue.map((element, index) => {
               return (
                 <option key={element} value={element}>
-                  {element}
+                  {element.toUpperCase()}
                 </option>
               );
             })}
