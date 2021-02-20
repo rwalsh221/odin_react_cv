@@ -18,8 +18,6 @@ const CVInput = (props) => {
   const dispatch = useDispatch();
   let state = retrieveLocalStorage('fullState');
 
-  console.log(state);
-
   const dispatchState = useCallback(
     (actionTypes, payload) => {
       dispatch(actionTypes(payload));
@@ -33,8 +31,6 @@ const CVInput = (props) => {
       cvInputsPersonal: {},
     };
   }
-
-  console.log(state);
 
   useEffect(() => {
     dispatchState(actionTypesCVInputsSlice.initState, state.cvInputs);

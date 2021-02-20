@@ -16,8 +16,6 @@ const CVInputsPersonal = (props) => {
 
   const savedState = useSelector((state) => state.cvInputsPersonal);
 
-  let content;
-
   // STATE
   const [personalSubmit, setPersonalSubmit] = useState({
     clicked: false,
@@ -32,10 +30,12 @@ const CVInputsPersonal = (props) => {
 
   const renderInputHandler = (inputTitle, inputName) => {
     const copyPersonalStore = { ...personalStore };
-    content = inputTitle.map((inputTitle, index) => {
+    return inputTitle.map((inputTitle, index) => {
       return (
         <li key={inputTitle} className={classes.cvInputs__subContent}>
-          <h4 className={classes.cvInputs__inputHeading}>{inputTitle}:</h4>
+          <label className={classes.cvInputs__inputHeading}>
+            {inputTitle}:
+          </label>
           <input
             type={'text'}
             name={inputName[index]}
@@ -68,13 +68,13 @@ const CVInputsPersonal = (props) => {
     setPersonalSubmit({ clicked: false, textContent: 'ADD' });
   };
 
-  renderInputHandler(props.inputTitle, props.inputName);
-
   return (
     <div className={`${classes.personal}`} id={'none'}>
       <h3 className={classes.cvInputs__heading}>Personal</h3>
       <form className={classes.inputForm} onSubmit={() => {}}>
-        <ul className={classes.cvInputs__content}>{content}</ul>
+        <ul className={classes.cvInputs__content}>
+          {renderInputHandler(props.inputTitle, props.inputName)}
+        </ul>
         <Button
           btnType={'btnAdd'}
           btnLabel={personalSubmit.textContent}
