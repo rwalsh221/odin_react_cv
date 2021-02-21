@@ -14,16 +14,10 @@ header {
 }
 
 .navButton {
-  padding: 1rem;
-  background-color: var(--main-text-color);
-  font-family: inherit;
-  border: var(--border-2px-dark);
-  box-shadow: 2px 2px 2px var(--main-background-color-dark);
-  color: var(--main-background-color-dark);
-  font-weight: 600;
+  padding: 0.5rem;
   width: 8rem;
   height: 100%;
-  border-style: none;
+  text-align: center;
 }
 
 .navBar {

@@ -1,11 +1,18 @@
 :root {
   /* TEXT COLORS */
-  --main-text-color: #4c1b10;
+  --main-text-color: #2b2921;
 
   /* BACKGROUND COLORS */
-  --main-background-color: #df7861;
-  --main-background-color-dark: #d7593c;
-  --main-background-color-light: #ecb390;
+  /* --main-background-color: #df7861; */
+  --main-background-color: #a69e76;
+
+  /* --main-background-color-dark: #d7593c; */
+  --main-background-color-dark: #595025;
+
+  --main-background-color-light: #d9ce9a;
+
+  --secondary-background-color-yellow: #dfc95b;
+  --secondary-background-color-blue: #71dedc;
 
   /* BORDER */
   --border-2px-dark: 2px solid var(--main-background-color-dark);

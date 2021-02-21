@@ -28,3 +28,33 @@
   background-color: var(--main-background-color-light);
   box-shadow: 2px 2px 2px inset #522116;
 }
+
+@media (max-width: 1070px) {
+  .previewCV {
+    grid-template-columns: 0.3fr 3fr 5fr;
+  }
+}
+
+@media (max-width: 1035px) {
+  p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 835px) {
+  h4 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .previewCV {
+    grid-template-columns: 0.1fr 3fr 5fr;
+  }
+}
+
+@media (max-width: 450px) {
+  p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,37 +1,23 @@
-button {
-  width: 8rem;
-  border-style: none;
-}
-
 .btnAdd,
 .btnEdit {
   padding: 1rem;
+  width: 8rem;
+}
+
+.active {
   background-color: var(--main-text-color);
-  font-family: inherit;
-  border: var(--border-2px-dark);
-  box-shadow: 2px 2px 2px var(--main-background-color-dark);
-  color: var(--main-background-color-dark);
-  font-weight: 600;
-}
-
-.active,
-.btnAdd:hover,
-.btnEdit:hover {
-  background-color: var(--main-background-color-dark);
   border: 2px solid var(--main-text-color);
-  color: var(--main-text-color);
+  color: #dfc95b;
 }
 
-.active,
-.btnAdd:active,
-.btnEdit:active {
+.active {
   transform: translateY(2px);
   box-shadow: none;
 }
 
 .btnAdd:focus,
 .btnEdit:focus {
-  outline-color: #5f2114;
+  outline-color: #71dedc;
 }
 
 .btnEdit {

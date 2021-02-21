@@ -23,18 +23,6 @@
   border: 2px solid var(--main-text-color);
 }
 
-.personalContainer {
-  /* background-color: indigo; */
-}
-
-.skillsContainer {
-  /* background-color: cornflowerblue; */
-}
-
-.refContainer {
-  /* background-color: crimson; */
-}
-
 ul {
   list-style: none;
   width: 100%;
@@ -55,4 +43,36 @@ li {
 
 .subContent {
   font-size: 2rem;
+}
+
+@media (max-width: 835px) {
+  .subContent {
+    font-size: 1.3rem;
+  }
+
+  .subHeading {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 745px) {
+  .employmentDate,
+  .employmentEmployer,
+  .employmentTitle {
+    font-size: 1.1rem;
+  }
+
+  .employmentDescription {
+    font-size: 0.9rem;
+  }
+
+  .sectionTwo {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .subHeading {
+    margin: 0.5rem 0;
+  }
 }
