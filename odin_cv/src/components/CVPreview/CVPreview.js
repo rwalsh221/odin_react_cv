@@ -14,12 +14,6 @@ const CVPreview = (props) => {
   const stateEmployment = state.cvInputs.employment;
   const stateAdditional = state.cvInputs.additional;
 
-  console.log(state);
-  console.log(statePersonal);
-  console.log(stateEducation);
-  console.log(stateEmployment);
-  console.log(stateAdditional);
-
   return (
     <main className={classes.main}>
       <div className={classes.previewCV}>

@@ -10,10 +10,10 @@ import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
 // TODO: REFACTOR LOCAL STORAGE FUNCTION. CUSTOM HOOK ?
-// TODO: RESPONSIVE PREVIEW
 // TODO: Capitalize function for input names in cvinput. make form gernertaion leaner
 // TODO: change width to flex basis on flex items.
-// TODO: LARGE SCREEN MEDIA QUERIE
+// TODO: STOP MULTIPLE EDIT
+// TODO: CHANGE ADD TO UPDATE ON INPUT FORM WHEN EDIT
 
 const mapDispatch = {
   ...actionTypes,

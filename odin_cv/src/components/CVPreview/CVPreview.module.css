@@ -1,5 +1,5 @@
 .main {
-  min-height: max-content;
+  min-height: 90vh;
   background-color: var(--main-background-color-light);
   display: flex;
   align-items: center;

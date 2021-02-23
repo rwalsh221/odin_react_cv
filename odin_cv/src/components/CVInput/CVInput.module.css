@@ -8,7 +8,7 @@
   justify-items: center;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   .CVInput {
     grid-template-columns: repeat(1, 90%);
     grid-template-rows: repeat(7, max-content);

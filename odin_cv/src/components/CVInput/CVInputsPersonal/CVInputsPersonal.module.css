@@ -41,7 +41,7 @@
   margin: 0 auto;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   .personal {
     grid-column: 1;
   }

@@ -75,4 +75,14 @@ li {
   .subHeading {
     margin: 0.5rem 0;
   }
+  .sectionTwo {
+    padding: 0;
+  }
+
+  .imageContainer,
+  .personalContainer,
+  .skillsContainer,
+  .refContainer {
+    padding: 0.5rem;
+  }
 }
