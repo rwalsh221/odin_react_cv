@@ -12,7 +12,9 @@ const SavedCvInput = (props) => {
 
   const editHandler = (e) => {
     props.click(e);
-    setEdit({ style: '#5f2114', content: 'DEL' });
+    if (!props.edit) {
+      setEdit({ style: '#5f2114', content: 'DEL' });
+    }
   };
 
   return (

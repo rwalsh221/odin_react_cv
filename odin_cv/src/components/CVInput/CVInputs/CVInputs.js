@@ -149,14 +149,14 @@ const CvInputs = (props) => {
 
   // gets saved input to be edited
   const getEditHandler = (e) => {
-    setIsEdit(true);
+    if (!isEdit) {
+      setIsEdit(true);
+      const copySavedStore = [...state[props.storeName]];
+      setInputStore(getObjById(copySavedStore, e.target.id));
+    }
 
     if (isEdit === true && e.target.textContent === 'DEL') {
       deleteInputHandler(e);
-    } else {
-      const copySavedStore = [...state[props.storeName]];
-
-      setInputStore(getObjById(copySavedStore, e.target.id));
     }
   };
 
