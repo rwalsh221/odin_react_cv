@@ -12,7 +12,6 @@ import classes from './CVInputs.module.css';
 // TODO: REFACTOR LOCAL STORAGE FUNCTION. CUSTOM HOOK ?
 // TODO: Capitalize function for input names in cvinput. make form gernertaion leaner
 // TODO: change width to flex basis on flex items.
-// TODO: STOP MULTIPLE EDIT
 // TODO: CHANGE ADD TO UPDATE ON INPUT FORM WHEN EDIT
 
 const mapDispatch = {
@@ -244,7 +243,10 @@ const CvInputs = (props) => {
               props.storeName
             )}
           </ul>
-          <Button btnType={'btnAdd'} btnLabel={'ADD'}></Button>
+          <Button
+            btnType={'btnAdd'}
+            btnLabel={isEdit ? 'UPDATE' : 'ADD'}
+          ></Button>
         </form>
       </div>
       <div className={classes.cvInputs__saved}>
