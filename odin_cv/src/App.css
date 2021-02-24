@@ -47,6 +47,15 @@ body {
   font-family: 'Montserrat', cursive;
 }
 
+a:active,
+a:link {
+  color: var(--secondary-background-color-yellow);
+}
+
+a:visited {
+  color: var(--secondary-background-color-blue);
+}
+
 h1,
 h2 {
   font-family: 'Aguafina Script', cursive;
@@ -74,7 +83,12 @@ h4 {
   font-size: 1.5rem;
 }
 
-input {
+form {
+  width: 100%;
+}
+
+input,
+select {
   width: 80%;
   border-radius: 5%;
 }

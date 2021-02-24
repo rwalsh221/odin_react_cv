@@ -4,6 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import * as actionTypes from './CVInputsSlice';
 import { getObjById } from '../../../utilities/utilities';
 import { setLocalStorage } from '../../../utilities/utilities';
+import * as switchDispatch from './CVInputsDispatch';
 
 import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
@@ -19,8 +20,6 @@ const CvInputs = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cvInputs);
   const fullState = useSelector((state) => state);
-
-  console.log(fullState);
 
   const initInputStore = () => {
     let initInputStoreObj = {};
@@ -160,7 +159,7 @@ const CvInputs = (props) => {
   };
 
   const deleteInputHandler = (e) => {
-    dispatchDelete(props.storeName, e.target.id);
+    switchDispatch.dispatchDelete(dispatch, props.storeName, e.target.id);
     setIsEdit(false);
 
     clearInputStore();
@@ -204,7 +203,7 @@ const CvInputs = (props) => {
     } else {
       newInput = { ...newInput, id: new Date().getTime() };
 
-      dispatchSubmit(props.storeName, newInput);
+      switchDispatch.dispatchSubmit(dispatch, props.storeName, newInput);
     }
 
     clearInputStore();
@@ -222,7 +221,7 @@ const CvInputs = (props) => {
 
     copySavedStore.splice(editIndex, 1, inputStore);
 
-    dispatchUpdate(props.storeName, inputStore);
+    switchDispatch.dispatchUpdate(dispatch, props.storeName, inputStore);
 
     setIsEdit(false);
   };
