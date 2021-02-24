@@ -33,7 +33,10 @@ const CVInputsPersonal = (props) => {
     return inputTitle.map((inputTitle, index) => {
       return (
         <li key={inputTitle} className={classes.cvInputs__subContent}>
-          <label className={classes.cvInputs__inputHeading}>
+          <label
+            className={classes.cvInputs__inputHeading}
+            htmlFor={inputName[index]}
+          >
             {inputTitle}:
           </label>
           <input
@@ -46,6 +49,7 @@ const CVInputsPersonal = (props) => {
                 ? copyPersonalStore[inputName[index]]
                 : ''
             }
+            id={inputName[index]}
           ></input>
         </li>
       );

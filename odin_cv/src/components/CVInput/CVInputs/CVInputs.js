@@ -3,16 +3,13 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 
 import * as actionTypes from './CVInputsSlice';
 import { getObjById } from '../../../utilities/utilities';
+import { setLocalStorage } from '../../../utilities/utilities';
 
 import Button from '../../UI/Button/Button';
 import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
-// TODO: REFACTOR LOCAL STORAGE FUNCTION. CUSTOM HOOK ?
-// TODO: Capitalize function for input names in cvinput. make form gernertaion leaner
-// TODO: change width to flex basis on flex items.
-// TODO: CHANGE ADD TO UPDATE ON INPUT FORM WHEN EDIT
 
 const mapDispatch = {
   ...actionTypes,
@@ -21,6 +18,9 @@ const mapDispatch = {
 const CvInputs = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cvInputs);
+  const fullState = useSelector((state) => state);
+
+  console.log(fullState);
 
   const initInputStore = () => {
     let initInputStoreObj = {};
@@ -79,6 +79,7 @@ const CvInputs = (props) => {
             name={inputName[index]}
             value={initialValue}
             onChange={(event) => setEditHandler(event)}
+            id={inputName}
           ></input>
         );
       }
@@ -114,7 +115,6 @@ const CvInputs = (props) => {
   };
 
   const dispatchUpdate = (storeName, payload) => {
-    console.log(storeName);
     switch (storeName) {
       case 'education':
         dispatch(actionTypes.updateEducation(payload));
@@ -226,6 +226,8 @@ const CvInputs = (props) => {
 
     setIsEdit(false);
   };
+
+  setLocalStorage('fullState', fullState);
 
   return (
     <React.Fragment>

@@ -6,14 +6,20 @@ import classes from './SavedCvInputs.module.css';
 const SavedCvInput = (props) => {
   const [edit, setEdit] = useState({ style: '', content: 'EDIT' });
 
-  if (!props.edit && edit.style === '#5f2114') {
+  if (
+    !props.edit &&
+    edit.style === 'var(--secondary-background-color-yellow)'
+  ) {
     setEdit({ style: '', content: 'EDIT' });
   }
 
   const editHandler = (e) => {
     props.click(e);
     if (!props.edit) {
-      setEdit({ style: '#5f2114', content: 'DEL' });
+      setEdit({
+        style: 'var(--secondary-background-color-yellow)',
+        content: 'DEL',
+      });
     }
   };
 

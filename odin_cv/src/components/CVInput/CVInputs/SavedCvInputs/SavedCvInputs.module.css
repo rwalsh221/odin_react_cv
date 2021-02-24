@@ -1,5 +1,5 @@
 .savedCvInput {
-  width: 48%;
+  flex-basis: 48%;
   display: flex;
   align-items: center;
   border: 2px solid var(--main-text-color);
@@ -8,7 +8,7 @@
 }
 
 .savedCvInput__content {
-  width: 96%;
+  flex-basis: 96%;
   height: max-content;
   background-color: var(--main-background-color);
   border: var(--border-2px-dark);

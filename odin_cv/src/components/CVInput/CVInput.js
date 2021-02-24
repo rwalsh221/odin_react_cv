@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 
+import useLocalStorage from '../../hooks/useLocalstorage/useLocalStorage';
 import classes from './CVInput.module.css';
-import { retrieveLocalStorage } from '../../utilities/utilities';
 import * as actionTypesCVInputsSlice from './CVInputs/CVInputsSlice';
 import * as actionTypesCVInputsPersonalSlice from './CVInputsPersonal/CVInputsPersonalSlice';
 
@@ -15,45 +15,11 @@ const mapDispatch = {
 };
 
 const CVInput = (props) => {
-  const dispatch = useDispatch();
-  let state = retrieveLocalStorage('fullState');
-
-  const dispatchState = useCallback(
-    (actionTypes, payload) => {
-      dispatch(actionTypes(payload));
-    },
-    [dispatch]
+  useLocalStorage(actionTypesCVInputsSlice.initState, ['cvInputs']);
+  useLocalStorage(
+    actionTypesCVInputsPersonalSlice.addPersonal,
+    'cvInputsPersonal'
   );
-
-  if (state === undefined) {
-    state = {
-      cvInputs: { education: [], employment: [], additional: [] },
-      cvInputsPersonal: {},
-    };
-  }
-
-  useEffect(() => {
-    dispatchState(actionTypesCVInputsSlice.initState, state.cvInputs);
-  }, [dispatchState, state.cvInputs]);
-
-  useEffect(() => {
-    dispatchState(
-      actionTypesCVInputsPersonalSlice.addPersonal,
-      state.cvInputsPersonal
-    );
-  }, [dispatchState, state.cvInputsPersonal]);
-
-  // dispatchState(actionTypesCVInputsSlice.initState, state.cvInputs);
-
-  // dispatchState(
-  //   actionTypesCVInputsSlice.addEmployment,
-  //   state.cvInputs.employment
-  // );
-
-  // dispatchState(
-  //   actionTypesCVInputsSlice.addAdditional,
-  //   state.cvInputs.additional
-  // );
 
   return (
     <main className={classes.CVInput} id={classes.test}>
