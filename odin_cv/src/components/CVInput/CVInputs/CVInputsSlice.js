@@ -34,7 +34,6 @@ const cvInputsSlice = createSlice({
       state.employment.push({ ...payload });
     },
     addAdditional(state, action) {
-      console.log(action.payload);
       const payload = action.payload;
       state.additional.push({ ...payload });
     },

@@ -9,6 +9,17 @@ import classes from './HeaderNavigation.module.css';
 const HeaderNavigation = (props) => {
   const state = useSelector((state) => state);
 
+  let btnClassHome = classes.navButton;
+  let btnClassPreview = classes.navButton;
+
+  if (props.home) {
+    btnClassHome = classes.navButtonClicked;
+  }
+
+  if (props.preview) {
+    btnClassPreview = classes.navButtonClicked;
+  }
+
   return (
     <header>
       <Link to="/home">
@@ -16,11 +27,11 @@ const HeaderNavigation = (props) => {
       </Link>
       <nav className={classes.navBar}>
         <Link to="/home">
-          <button className={classes.navButton}>HOME</button>
+          <button className={btnClassHome}>HOME</button>
         </Link>
         <Link to="/preview">
           <button
-            className={classes.navButton}
+            className={btnClassPreview}
             onClick={() => {
               setLocalStorage('fullState', state);
             }}

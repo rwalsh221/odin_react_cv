@@ -6,7 +6,7 @@ import CVInput from '../../components/CVInput/CVInput';
 const Home = (props) => {
   return (
     <React.Fragment>
-      <HeaderNavigation />
+      <HeaderNavigation home={true} />
       <CVInput />
     </React.Fragment>
   );

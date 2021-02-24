@@ -6,7 +6,7 @@ import CVPreview from '../../components/CVPreview/CVPreview';
 const Preview = (props) => {
   return (
     <React.Fragment>
-      <HeaderNavigation />
+      <HeaderNavigation preview={true} />
       <CVPreview />
     </React.Fragment>
   );

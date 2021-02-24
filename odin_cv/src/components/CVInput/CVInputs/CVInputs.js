@@ -11,6 +11,7 @@ import SavedCvInput from './SavedCvInputs/SavedCvInputs';
 import classes from './CVInputs.module.css';
 
 // TODO: ADD VALIDATION LAST THING!!
+// TODO: ADD REFERENCE FORM
 
 const mapDispatch = {
   ...actionTypes,
@@ -95,54 +96,6 @@ const CvInputs = (props) => {
         </li>
       );
     });
-  };
-
-  const dispatchSubmit = (storeName, payload) => {
-    switch (storeName) {
-      case 'education':
-        dispatch(actionTypes.addEducation(payload));
-        break;
-      case 'employment':
-        dispatch(actionTypes.addEmployment(payload));
-        break;
-      case 'additional':
-        dispatch(actionTypes.addAdditional(payload));
-        break;
-      default:
-        console.log('no switch');
-    }
-  };
-
-  const dispatchUpdate = (storeName, payload) => {
-    switch (storeName) {
-      case 'education':
-        dispatch(actionTypes.updateEducation(payload));
-        break;
-      case 'employment':
-        dispatch(actionTypes.updateEmployment(payload));
-        break;
-      case 'additional':
-        dispatch(actionTypes.updateAdditional(payload));
-        break;
-      default:
-        console.log('no switch');
-    }
-  };
-
-  const dispatchDelete = (storeName, payload) => {
-    switch (storeName) {
-      case 'education':
-        dispatch(actionTypes.deleteEducation(payload));
-        break;
-      case 'employment':
-        dispatch(actionTypes.deleteEmployment(payload));
-        break;
-      case 'additional':
-        dispatch(actionTypes.deleteAdditional(payload));
-        break;
-      default:
-        console.log('no switch');
-    }
   };
 
   // gets saved input to be edited

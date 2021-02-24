@@ -13,11 +13,20 @@ header {
   width: 100%;
 }
 
-.navButton {
+.navButton,
+.navButtonClicked {
   padding: 0.5rem;
   width: 9rem;
   height: 100%;
   text-align: center;
+}
+
+.navButtonClicked {
+  background-color: var(--main-text-color);
+  border: 2px solid var(--main-text-color);
+  color: #dfc95b;
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .navBar {
