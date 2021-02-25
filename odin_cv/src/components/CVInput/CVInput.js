@@ -1,26 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import useLocalStorage from '../../hooks/useLocalstorage/useLocalStorage';
 import classes from './CVInput.module.css';
-import * as actionTypesCVInputsSlice from './CVInputs/CVInputsSlice';
-import * as actionTypesCVInputsPersonalSlice from './CVInputsPersonal/CVInputsPersonalSlice';
-
+import { storeNames } from './CVInputs/CVInputsSlice';
 import CVInputs from './CVInputs/CVInputs';
 import CVInputsPersonal from './CVInputsPersonal/CVInputsPersonal';
 
-const mapDispatch = {
-  ...actionTypesCVInputsSlice,
-  ...actionTypesCVInputsPersonalSlice,
-};
-
 const CVInput = (props) => {
-  useLocalStorage(actionTypesCVInputsSlice.initState, ['cvInputs']);
-  useLocalStorage(
-    actionTypesCVInputsPersonalSlice.addPersonal,
-    'cvInputsPersonal'
-  );
-
   return (
     <main className={classes.CVInput} id={classes.test}>
       <CVInputsPersonal
@@ -50,7 +35,7 @@ const CVInput = (props) => {
           { title: 'Date', type: 'date' },
         ]}
         inputName={['title', 'location', 'qualification', 'date']}
-        storeName={'education'}
+        storeName={storeNames.education}
       />
       <CVInputs
         heading={'Employment History'}
@@ -61,7 +46,7 @@ const CVInput = (props) => {
           { title: 'Description', type: 'text' },
         ]}
         inputName={['title', 'location', 'date', 'description']}
-        storeName={'employment'}
+        storeName={storeNames.employment}
       />
       <CVInputs
         heading={'Additional Skills'}
@@ -74,10 +59,19 @@ const CVInput = (props) => {
           },
         ]}
         inputName={['title', 'level']}
-        storeName={'additional'}
+        storeName={storeNames.additional}
+      />
+      <CVInputs
+        heading={'References'}
+        inputForm={[
+          { title: 'Name', type: 'text' },
+          { title: 'Location', type: 'text' },
+        ]}
+        inputName={['title', 'location']}
+        storeName={storeNames.references}
       />
     </main>
   );
 };
 
-export default connect(null, mapDispatch)(CVInput);
+export default CVInput;

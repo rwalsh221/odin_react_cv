@@ -1,10 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const stateObject = {
+import { retrieveLocalStorage } from '../../../utilities/utilities';
+
+const fullState = retrieveLocalStorage('fullState');
+
+let initState;
+
+export const storeNames = {
   education: 'education',
   employment: 'employment',
   additional: 'additional',
+  references: 'references',
 };
+
+// STATEOBJECT = CVInputs storeName
+let stateObject = {};
+
+for (let key in storeNames) {
+  stateObject = { ...stateObject, [key]: [] };
+}
+
+// sets initialState based on local storage
+if (fullState === undefined) {
+  initState = {
+    ...stateObject,
+  };
+} else {
+  initState = { ...fullState.cvInputs };
+  for (let key in stateObject) {
+    if (fullState.cvInputs[key] === undefined) {
+      initState = { ...initState, [key]: [] };
+    }
+  }
+}
 
 const updateInput = (state, action, stateObject) => {
   const copyState = [...state[stateObject]];
@@ -23,7 +51,9 @@ const deleteInput = (state, action, stateObject) => {
 
 const cvInputsSlice = createSlice({
   name: 'cvInputs',
-  initialState: { education: [], employment: [], additional: [] },
+  initialState: {
+    ...initState,
+  },
   reducers: {
     addEducation(state, action) {
       const payload = action.payload;
@@ -37,25 +67,34 @@ const cvInputsSlice = createSlice({
       const payload = action.payload;
       state.additional.push({ ...payload });
     },
+    addReferences(state, action) {
+      const payload = action.payload;
+      state.references.push({ ...payload });
+    },
     updateEducation(state, action) {
-      updateInput(state, action, stateObject.education);
+      updateInput(state, action, storeNames.education);
     },
     updateEmployment(state, action) {
-      updateInput(state, action, stateObject.employment);
+      updateInput(state, action, storeNames.employment);
     },
     updateAdditional(state, action) {
-      updateInput(state, action, stateObject.additional);
+      updateInput(state, action, storeNames.additional);
+    },
+    updateReferences(state, action) {
+      updateInput(state, action, storeNames.references);
     },
     deleteEducation(state, action) {
-      deleteInput(state, action, stateObject.education);
+      deleteInput(state, action, storeNames.education);
     },
     deleteEmployment(state, action) {
-      deleteInput(state, action, stateObject.employment);
+      deleteInput(state, action, storeNames.employment);
     },
     deleteAdditional(state, action) {
-      deleteInput(state, action, stateObject.additional);
+      deleteInput(state, action, storeNames.additional);
     },
-    initState: (state, action) => (state = action.payload),
+    deleteReferences(state, action) {
+      deleteInput(state, action, storeNames.references);
+    },
   },
 });
 
@@ -63,13 +102,15 @@ export const {
   addEducation,
   addEmployment,
   addAdditional,
+  addReferences,
   updateEducation,
   updateEmployment,
   updateAdditional,
+  updateReferences,
   deleteEducation,
   deleteEmployment,
   deleteAdditional,
-  initState,
+  deleteReferences,
 } = cvInputsSlice.actions;
 
 export default cvInputsSlice.reducer;

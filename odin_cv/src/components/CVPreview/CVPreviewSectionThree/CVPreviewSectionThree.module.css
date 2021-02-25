@@ -92,4 +92,8 @@
     grid-column-start: 1;
     grid-column-end: 4;
   }
+
+  .employmentDescription {
+    font-size: 0.5rem;
+  }
 }

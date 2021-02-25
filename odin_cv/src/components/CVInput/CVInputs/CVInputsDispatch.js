@@ -11,6 +11,9 @@ export const dispatchSubmit = (uDispatch, storeName, payload) => {
     case 'additional':
       uDispatch(actionTypes.addAdditional(payload));
       break;
+    case 'references':
+      uDispatch(actionTypes.addReferences(payload));
+      break;
     default:
       console.log('no switch');
   }
@@ -26,6 +29,9 @@ export const dispatchUpdate = (uDispatch, storeName, payload) => {
       break;
     case 'additional':
       uDispatch(actionTypes.updateAdditional(payload));
+      break;
+    case 'references':
+      uDispatch(actionTypes.updateReferences(payload));
       break;
     default:
       console.log('no switch');
@@ -43,6 +49,10 @@ export const dispatchDelete = (uDispatch, storeName, payload) => {
     case 'additional':
       uDispatch(actionTypes.deleteAdditional(payload));
       break;
+    case 'references':
+      uDispatch(actionTypes.deleteReferences(payload));
+      break;
+
     default:
       console.log('no switch');
   }
