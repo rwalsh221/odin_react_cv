@@ -5,7 +5,10 @@ import classes from './CVPreviewSectionTwo.module.css';
 const cvPreview = (props) => {
   const additionalContent = props.stateAdditional.map((element) => {
     return (
-      <li key={element.title} className={classes.previewLi}>
+      <li
+        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+        className={classes.previewLi}
+      >
         <h4 className={classes.subHeading}>{element.title}</h4>
         <p className={classes.subContent}>Level: {element.level}</p>
       </li>
@@ -14,7 +17,10 @@ const cvPreview = (props) => {
 
   const referenceContent = props.stateReferences.map((element) => {
     return (
-      <li key={element.title} className={classes.previewLi}>
+      <li
+        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+        className={classes.previewLi}
+      >
         <h4 className={classes.subHeading}>{element.title}</h4>
         <p className={classes.subContent}>Level: {element.level}</p>
       </li>

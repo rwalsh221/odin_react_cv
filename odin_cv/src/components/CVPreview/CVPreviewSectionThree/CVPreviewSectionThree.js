@@ -6,7 +6,10 @@ import classes from './CVPreviewSectionThree.module.css';
 const cvPreview = (props) => {
   const educationContent = props.stateEducation.map((element) => {
     return (
-      <div className={classes.subEducationContainer}>
+      <div
+        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+        className={classes.subEducationContainer}
+      >
         <h4 className={classes.educationDate}>{element.date}</h4>
         <h4 className={classes.educationTitle}>{element.title}</h4>
         <h4 className={classes.educationLocation}>{element.location}</h4>
@@ -16,7 +19,10 @@ const cvPreview = (props) => {
 
   const employmentContent = props.stateEmployment.map((element) => {
     return (
-      <div className={classes.subEmploymentContainer}>
+      <div
+        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+        className={classes.subEmploymentContainer}
+      >
         <h4 className={classes.employmentDate}>{element.date}</h4>
         <h4 className={classes.employmentTitle}>{element.title}</h4>
         <h4 className={classes.employmentEmployer}>{element.location}</h4>
