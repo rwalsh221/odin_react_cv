@@ -28,19 +28,19 @@ const CVInputsPersonal = (props) => {
     setPersonalStore({ ...savedState });
   }, [setPersonalStore, savedState]);
 
-  const renderInputHandler = (inputTitle, inputName) => {
+  const renderInputHandler = (inputForm, inputName) => {
     const copyPersonalStore = { ...personalStore };
-    return inputTitle.map((inputTitle, index) => {
+    return inputForm.map((element, index) => {
       return (
-        <li key={inputTitle} className={classes.cvInputs__subContent}>
+        <li key={element.title} className={classes.cvInputs__subContent}>
           <label
             className={classes.cvInputs__inputHeading}
             htmlFor={inputName[index]}
           >
-            {inputTitle}:
+            {element.title}:
           </label>
           <input
-            type={'text'}
+            type={element.type}
             name={inputName[index]}
             onClick={personalEditHandler}
             onChange={(event) => inputContentHandler(event)}
@@ -77,7 +77,7 @@ const CVInputsPersonal = (props) => {
       <h3 className={classes.cvInputs__heading}>Personal</h3>
       <form className={classes.inputForm} onSubmit={() => {}}>
         <ul className={classes.cvInputs__content}>
-          {renderInputHandler(props.inputTitle, props.inputName)}
+          {renderInputHandler(props.inputForm, props.inputName)}
         </ul>
         <Button
           btnType={'btnAdd'}
