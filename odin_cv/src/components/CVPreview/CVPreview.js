@@ -13,6 +13,7 @@ const CVPreview = (props) => {
   const stateEducation = state.cvInputs.education;
   const stateEmployment = state.cvInputs.employment;
   const stateAdditional = state.cvInputs.additional;
+  const stateReferences = state.cvInputs.references;
 
   return (
     <main className={classes.main}>
@@ -26,6 +27,8 @@ const CVPreview = (props) => {
           statePersonalEmail={statePersonal.email}
           // PROPS FOR STATEADDITIONAL
           stateAdditional={stateAdditional}
+          // PROPS FOR STATEREFERENCES
+          stateReferences={stateReferences}
         />
         <CVPreviewSectionThree
           // PROPS FOR STATEPERSONAL

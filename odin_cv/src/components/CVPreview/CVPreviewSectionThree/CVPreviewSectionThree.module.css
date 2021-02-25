@@ -42,6 +42,7 @@
   grid-row-start: 2;
   grid-column-start: 2;
   grid-column-end: 4;
+  font-size: 1.5rem;
 }
 
 .subEducationContainer {
@@ -95,5 +96,12 @@
 
   .employmentDescription {
     font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .educationHeading,
+  .employmentHeading {
+    font-size: 1.5rem;
   }
 }

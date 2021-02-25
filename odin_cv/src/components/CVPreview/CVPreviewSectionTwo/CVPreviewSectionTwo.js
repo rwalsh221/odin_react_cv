@@ -5,7 +5,16 @@ import classes from './CVPreviewSectionTwo.module.css';
 const cvPreview = (props) => {
   const additionalContent = props.stateAdditional.map((element) => {
     return (
-      <li key={element.title}>
+      <li key={element.title} className={classes.previewLi}>
+        <h4 className={classes.subHeading}>{element.title}</h4>
+        <p className={classes.subContent}>Level: {element.level}</p>
+      </li>
+    );
+  });
+
+  const referenceContent = props.stateReferences.map((element) => {
+    return (
+      <li key={element.title} className={classes.previewLi}>
         <h4 className={classes.subHeading}>{element.title}</h4>
         <p className={classes.subContent}>Level: {element.level}</p>
       </li>
@@ -24,7 +33,7 @@ const cvPreview = (props) => {
       <div className={classes.personalContainer}>
         <h3 className={classes.heading}>Contact</h3>
         <ul>
-          <li>
+          <li className={classes.previewLi}>
             <h4 className={classes.subHeading}>Address:</h4>
             <p className={classes.subContent}>
               {props.statePersonalAddressStreet}
@@ -33,13 +42,13 @@ const cvPreview = (props) => {
               {props.statePersonalAddressCity}
             </p>
           </li>
-          <li>
+          <li className={classes.previewLi}>
             <h4 className={classes.subHeading}>Phone:</h4>
             <p className={classes.subContent}>
               {props.statePersonalPhoneNumber}
             </p>
           </li>
-          <li>
+          <li className={classes.previewLi}>
             <h4 className={classes.subHeading}>Email:</h4>
             <p className={classes.subContent}>{props.statePersonalEmail}</p>
           </li>
@@ -51,20 +60,7 @@ const cvPreview = (props) => {
       </div>
       <div className={classes.refContainer}>
         <h3 className={classes.heading}>References</h3>
-        <ul>
-          <li>
-            <h4 className={classes.subHeading}>Jimmy Mcnulty</h4>
-            <p className={classes.subContent}>Location: Baltimore</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Det. William 'Bunk' Moreland</h4>
-            <p className={classes.subContent}>Location: Baltimore</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Sen. Clayton 'Clay' Davies</h4>
-            <p className={classes.subContent}>Location: Baltimore</p>
-          </li>
-        </ul>
+        <ul>{referenceContent}</ul>
       </div>
     </section>
   );
