@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 import * as actionTypes from './CVInputsPersonalSlice';
+import validateForm from '../../../utilities/validation';
 
 import Button from '../../UI/Button/Button';
 
@@ -42,7 +43,10 @@ const CVInputsPersonal = (props) => {
           <input
             type={element.type}
             name={inputName[index]}
-            onClick={personalEditHandler}
+            onClick={(e) => {
+              document.getElementById(`${e.target.id}`).style.border = '';
+              personalEditHandler();
+            }}
             onChange={(event) => inputContentHandler(event)}
             value={
               copyPersonalStore[inputName[index]]
@@ -56,7 +60,7 @@ const CVInputsPersonal = (props) => {
     });
   };
 
-  const inputContentHandler = (event, storeName) => {
+  const inputContentHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
     setPersonalStore({ ...personalStore, [name]: value });
@@ -64,8 +68,11 @@ const CVInputsPersonal = (props) => {
 
   const personalSubmitHandler = (e) => {
     e.preventDefault();
-    setPersonalSubmit({ clicked: true, textContent: 'SAVED' });
-    dispatch(actionTypes.addPersonal({ ...personalStore }));
+    let validate = validateForm(e);
+    if (validate) {
+      setPersonalSubmit({ clicked: true, textContent: 'SAVED' });
+      dispatch(actionTypes.addPersonal({ ...personalStore }));
+    }
   };
 
   const personalEditHandler = () => {
@@ -75,7 +82,12 @@ const CVInputsPersonal = (props) => {
   return (
     <div className={`${classes.personal}`} id={'none'}>
       <h3 className={classes.cvInputs__heading}>Personal</h3>
-      <form className={classes.inputForm} onSubmit={() => {}}>
+      <form
+        className={classes.inputForm}
+        onSubmit={(e) => {
+          personalSubmitHandler(e);
+        }}
+      >
         <ul className={classes.cvInputs__content}>
           {renderInputHandler(props.inputForm, props.inputName)}
         </ul>
@@ -83,7 +95,7 @@ const CVInputsPersonal = (props) => {
           btnType={'btnAdd'}
           btnLabel={personalSubmit.textContent}
           btnSaved={personalSubmit.clicked}
-          click={personalSubmitHandler}
+          // click={personalSubmitHandler}
         ></Button>
       </form>
     </div>

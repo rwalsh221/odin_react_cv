@@ -4,6 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import * as actionTypes from './CVInputsSlice';
 import { getObjById } from '../../../utilities/utilities';
 import { setLocalStorage } from '../../../utilities/utilities';
+import validateForm from '../../../utilities/validation';
 import * as switchDispatch from './CVInputsDispatch';
 
 import Button from '../../UI/Button/Button';
@@ -79,7 +80,12 @@ const CvInputs = (props) => {
             name={inputName[index]}
             value={initialValue}
             onChange={(event) => setEditHandler(event)}
-            id={inputName}
+            id={`${inputName[index]}${(Math.random() * Math.random()).toFixed(
+              4
+            )}`}
+            onClick={(e) => {
+              document.getElementById(`${e.target.id}`).style.border = '';
+            }}
           ></input>
         );
       }
@@ -143,23 +149,30 @@ const CvInputs = (props) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let newInput = {};
-    for (let i = 0; i < e.target.length; i++) {
-      if (e.target[i].tagName === 'INPUT' || 'SELECT') {
-        const name = e.target[i].name;
-        const value = e.target[i].value;
-        newInput = { ...newInput, [name]: value };
+
+    let validate = validateForm(e);
+
+    if (validate) {
+      for (let i = 0; i < e.target.length; i++) {
+        if (
+          e.target[i].tagName === 'INPUT' ||
+          e.target[i].tagName === 'SELECT'
+        ) {
+          const name = e.target[i].name;
+          const value = e.target[i].value;
+          newInput = { ...newInput, [name]: value };
+        }
+      }
+
+      if (isEdit) {
+        editSavedHandler();
+        clearInputStore();
+      } else {
+        newInput = { ...newInput, id: new Date().getTime() };
+        switchDispatch.dispatchSubmit(dispatch, props.storeName, newInput);
+        clearInputStore();
       }
     }
-
-    if (isEdit) {
-      editSavedHandler();
-    } else {
-      newInput = { ...newInput, id: new Date().getTime() };
-
-      switchDispatch.dispatchSubmit(dispatch, props.storeName, newInput);
-    }
-
-    clearInputStore();
   };
 
   const editSavedHandler = () => {

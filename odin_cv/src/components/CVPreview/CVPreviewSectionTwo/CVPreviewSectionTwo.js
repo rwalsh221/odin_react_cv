@@ -22,7 +22,7 @@ const cvPreview = (props) => {
         className={classes.previewLi}
       >
         <h4 className={classes.subHeading}>{element.title}</h4>
-        <p className={classes.subContent}>Level: {element.level}</p>
+        <p className={classes.subContent}>Location: {element.location}</p>
       </li>
     );
   });
