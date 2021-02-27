@@ -1,7 +1,6 @@
-const validateForm = (e) => {
+export const validateForm = (e) => {
   let pass = true;
   let valArray = [];
-
   for (let i = 0; i < e.target.length; i++) {
     if (e.target[i].tagName === 'INPUT' || e.target[i].tagName === 'SELECT') {
       if (e.target[i].value === '') {
@@ -16,4 +15,11 @@ const validateForm = (e) => {
   return pass;
 };
 
-export default validateForm;
+export const clearValidation = (id) => {
+  const element = document.getElementById(`${id}`);
+  for (let i = 0; i < element.length; i++) {
+    if (element[i].tagName === 'INPUT' || element[i].tagName === 'SELECT') {
+      document.getElementById(`${element[i].id}`).style.border = '';
+    }
+  }
+};

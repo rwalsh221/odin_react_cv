@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 import * as actionTypes from './CVInputsPersonalSlice';
-import validateForm from '../../../utilities/validation';
+import * as validate from '../../../utilities/validation';
 
 import Button from '../../UI/Button/Button';
 
@@ -68,8 +68,8 @@ const CVInputsPersonal = (props) => {
 
   const personalSubmitHandler = (e) => {
     e.preventDefault();
-    let validate = validateForm(e);
-    if (validate) {
+    let isValid = validate.validateForm(e);
+    if (isValid) {
       setPersonalSubmit({ clicked: true, textContent: 'SAVED' });
       dispatch(actionTypes.addPersonal({ ...personalStore }));
     }

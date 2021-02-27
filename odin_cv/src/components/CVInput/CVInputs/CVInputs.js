@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import * as actionTypes from './CVInputsSlice';
 import { getObjById } from '../../../utilities/utilities';
 import { setLocalStorage } from '../../../utilities/utilities';
-import validateForm from '../../../utilities/validation';
+import * as validate from '../../../utilities/validation';
 import * as switchDispatch from './CVInputsDispatch';
 
 import Button from '../../UI/Button/Button';
@@ -106,6 +106,8 @@ const CvInputs = (props) => {
 
   // gets saved input to be edited
   const getEditHandler = (e) => {
+    validate.clearValidation(props.storeName);
+
     if (!isEdit) {
       setIsEdit(true);
       const copySavedStore = [...state[props.storeName]];
@@ -150,9 +152,9 @@ const CvInputs = (props) => {
     e.preventDefault();
     let newInput = {};
 
-    let validate = validateForm(e);
+    let isValid = validate.validateForm(e);
 
-    if (validate) {
+    if (isValid) {
       for (let i = 0; i < e.target.length; i++) {
         if (
           e.target[i].tagName === 'INPUT' ||
@@ -202,6 +204,7 @@ const CvInputs = (props) => {
           onSubmit={(e) => {
             formSubmitHandler(e);
           }}
+          id={props.storeName}
         >
           <ul className={classes.cvInputs__content}>
             {renderInputHandler(
