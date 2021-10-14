@@ -3,29 +3,25 @@ import React from 'react';
 import classes from './CVPreviewSectionTwo.module.css';
 
 const cvPreview = (props) => {
-  const additionalContent = props.stateAdditional.map((element) => {
-    return (
-      <li
-        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
-        className={classes.previewLi}
-      >
-        <h4 className={classes.subHeading}>{element.title}</h4>
-        <p className={classes.subContent}>Level: {element.level}</p>
-      </li>
-    );
-  });
+  const additionalContent = props.stateAdditional.map((element) => (
+    <li
+      key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+      className={classes.previewLi}
+    >
+      <h4 className={classes.subHeading}>{element.title}</h4>
+      <p className={classes.subContent}>Level: {element.level}</p>
+    </li>
+  ));
 
-  const referenceContent = props.stateReferences.map((element) => {
-    return (
-      <li
-        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
-        className={classes.previewLi}
-      >
-        <h4 className={classes.subHeading}>{element.title}</h4>
-        <p className={classes.subContent}>Location: {element.location}</p>
-      </li>
-    );
-  });
+  const referenceContent = props.stateReferences.map((element) => (
+    <li
+      key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+      className={classes.previewLi}
+    >
+      <h4 className={classes.subHeading}>{element.title}</h4>
+      <p className={classes.subContent}>Location: {element.location}</p>
+    </li>
+  ));
 
   return (
     <section className={classes.sectionTwo}>
@@ -34,7 +30,7 @@ const cvPreview = (props) => {
           src="../../../../img/lester.jpg"
           alt="personal"
           className={classes.imagePersonal}
-        ></img>
+        />
       </div>
       <div className={classes.personalContainer}>
         <h3 className={classes.heading}>Contact</h3>
@@ -73,16 +69,3 @@ const cvPreview = (props) => {
 };
 
 export default cvPreview;
-
-/*<li>
-            <h4 className={classes.subHeading}>Wire Tapping</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Cribbing Numbers</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>
-          <li>
-            <h4 className={classes.subHeading}>Making Doll House Furniture</h4>
-            <p className={classes.subContent}>Level: Advanced</p>
-          </li>*/

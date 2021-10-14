@@ -4,36 +4,32 @@ import { loremIpsum } from 'react-lorem-ipsum';
 import classes from './CVPreviewSectionThree.module.css';
 
 const cvPreview = (props) => {
-  const educationContent = props.stateEducation.map((element) => {
-    return (
-      <div
-        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
-        className={classes.subEducationContainer}
-      >
-        <h4 className={classes.educationDate}>{element.date}</h4>
-        <h4 className={classes.educationTitle}>{element.title}</h4>
-        <h4 className={classes.educationLocation}>{element.location}</h4>
-      </div>
-    );
-  });
+  const educationContent = props.stateEducation.map((element) => (
+    <div
+      key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+      className={classes.subEducationContainer}
+    >
+      <h4 className={classes.educationDate}>{element.date}</h4>
+      <h4 className={classes.educationTitle}>{element.title}</h4>
+      <h4 className={classes.educationLocation}>{element.location}</h4>
+    </div>
+  ));
 
-  const employmentContent = props.stateEmployment.map((element) => {
-    return (
-      <div
-        key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
-        className={classes.subEmploymentContainer}
-      >
-        <h4 className={classes.employmentDate}>{element.date}</h4>
-        <h4 className={classes.employmentTitle}>{element.title}</h4>
-        <h4 className={classes.employmentEmployer}>{element.location}</h4>
-        <p className={classes.employmentDescription}>
-          {element.description === ''
-            ? loremIpsum({ p: 1 })
-            : element.description}
-        </p>
-      </div>
-    );
-  });
+  const employmentContent = props.stateEmployment.map((element) => (
+    <div
+      key={`${element.title}${new Date().getMilliseconds() * Math.random()}`}
+      className={classes.subEmploymentContainer}
+    >
+      <h4 className={classes.employmentDate}>{element.date}</h4>
+      <h4 className={classes.employmentTitle}>{element.title}</h4>
+      <h4 className={classes.employmentEmployer}>{element.location}</h4>
+      <p className={classes.employmentDescription}>
+        {element.description === ''
+          ? loremIpsum({ p: 1 })
+          : element.description}
+      </p>
+    </div>
+  ));
 
   return (
     <section className={classes.sectionThree}>
@@ -59,44 +55,3 @@ const cvPreview = (props) => {
 };
 
 export default cvPreview;
-
-/*<div className={classes.subEducationContainer}>
-            <h4 className={classes.educationDate}>Ed DATE</h4>
-            <h4 className={classes.educationTitle}>Ed TITLE</h4>
-            <h4 className={classes.educationLocation}>ED LOCATION</h4>
-          </div>
-          <div className={classes.subEducationContainer}>
-            <h4 className={classes.educationDate}>Ed DATE</h4>
-            <h4 className={classes.educationTitle}>Ed TITLE</h4>
-            <h4 className={classes.educationLocation}>ED LOCATION</h4>
-          </div>
-          <div className={classes.subEducationContainer}>
-            <h4 className={classes.educationDate}>Ed DATE</h4>
-            <h4 className={classes.educationTitle}>Ed TITLE</h4>
-            <h4 className={classes.educationLocation}>ED LOCATION</h4>
-          </div>*/
-
-/*<div className={classes.subEmploymentContainer}>
-          <h4 className={classes.employmentDate}>EMP DATE</h4>
-          <h4 className={classes.employmentTitle}>EMP TITLE</h4>
-          <h4 className={classes.employmentEmployer}>EMPLOYER</h4>
-          <p className={classes.employmentDescription}>
-            {loremIpsum({ p: 1 })}
-          </p>
-        </div>
-        <div className={classes.subEmploymentContainer}>
-          <h4 className={classes.employmentDate}>EMP DATE</h4>
-          <h4 className={classes.employmentTitle}>EMP TITLE</h4>
-          <h4 className={classes.employmentEmployer}>EMPLOYER</h4>
-          <p className={classes.employmentDescription}>
-            {loremIpsum({ p: 1 })}
-          </p>
-        </div>
-        <div className={classes.subEmploymentContainer}>
-          <h4 className={classes.employmentDate}>EMP DATE</h4>
-          <h4 className={classes.employmentTitle}>EMP TITLE</h4>
-          <h4 className={classes.employmentEmployer}>EMPLOYER</h4>
-          <p className={classes.employmentDescription}>
-            {loremIpsum({ p: 1 })}
-          </p>
-        </div>*/

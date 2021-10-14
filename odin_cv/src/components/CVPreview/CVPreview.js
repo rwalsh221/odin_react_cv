@@ -6,8 +6,8 @@ import CVPreviewSectionThree from './CVPreviewSectionThree/CVPreviewSectionThree
 
 import classes from './CVPreview.module.css';
 
-const CVPreview = (props) => {
-  const state = useSelector((state) => state);
+const CVPreview = () => {
+  const state = useSelector((reduxState) => reduxState);
 
   const statePersonal = state.cvInputsPersonal;
   const stateEducation = state.cvInputs.education;
@@ -18,7 +18,7 @@ const CVPreview = (props) => {
   return (
     <main className={classes.main}>
       <div className={classes.previewCV}>
-        <section className={classes.sectionOne}></section>
+        <section className={classes.sectionOne} />
         <CVPreviewSectionTwo
           // PROPS FOR STATEPERSONAL
           statePersonalAddressStreet={statePersonal.addressStreet}
