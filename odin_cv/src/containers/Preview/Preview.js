@@ -5,7 +5,7 @@ import CVPreview from '../../components/CVPreview/CVPreview';
 
 const Preview = () => (
   <>
-    <HeaderNavigation preview />
+    <HeaderNavigation previewProps />
     {/* <HeaderNavigation preview={true} /> */}
     <CVPreview />
   </>

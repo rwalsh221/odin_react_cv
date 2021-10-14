@@ -1,22 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { setLocalStorage } from '../../utilities/utilities';
 
 import classes from './HeaderNavigation.module.css';
 
-const HeaderNavigation = (props) => {
-  const state = useSelector((state) => state);
+const HeaderNavigation = ({ homeProps, previewProps }) => {
+  const state = useSelector((reduxState) => reduxState);
 
   let btnClassHome = classes.navButton;
   let btnClassPreview = classes.navButton;
 
-  if (props.home) {
+  if (homeProps) {
     btnClassHome = classes.navButtonClicked;
   }
 
-  if (props.preview) {
+  if (previewProps) {
     btnClassPreview = classes.navButtonClicked;
   }
 
@@ -27,11 +28,14 @@ const HeaderNavigation = (props) => {
       </Link>
       <nav className={classes.navBar}>
         <Link to="/home">
-          <button className={btnClassHome}>HOME</button>
+          <button className={btnClassHome} type="button">
+            HOME
+          </button>
         </Link>
         <Link to="/preview">
           <button
             className={btnClassPreview}
+            type="button"
             onClick={() => {
               setLocalStorage('fullState', state);
             }}
@@ -42,6 +46,11 @@ const HeaderNavigation = (props) => {
       </nav>
     </header>
   );
+};
+
+HeaderNavigation.propTypes = {
+  homeProps: PropTypes.bool.isRequired,
+  previewProps: PropTypes.bool.isRequired,
 };
 
 export default HeaderNavigation;
