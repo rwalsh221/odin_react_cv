@@ -28,6 +28,8 @@
           "some": ["nesting", "id"]
         }
       }
-    ]
+    ],
+    "no-return-assign": "warn",
+    "no-param-reassign": "warn"
   }
 }
