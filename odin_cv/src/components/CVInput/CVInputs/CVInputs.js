@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actionTypes from './CVInputsSlice';
-import { getObjById } from '../../../utilities/utilities';
-import { setLocalStorage } from '../../../utilities/utilities';
+import { getObjById, setLocalStorage } from '../../../utilities/utilities';
 import * as validate from '../../../utilities/validation';
 import * as switchDispatch from './CVInputsDispatch';
 
@@ -18,15 +18,20 @@ const mapDispatch = {
   ...actionTypes,
 };
 
-const CvInputs = (props) => {
+const CvInputs = ({
+  headingProps,
+  inputFormProps,
+  inputNameProps,
+  storeNameProps,
+}) => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.cvInputs);
-  const fullState = useSelector((state) => state);
+  const state = useSelector((reduxState) => reduxState.cvInputs);
+  const fullState = useSelector((reduxState) => reduxState);
 
   const initInputStore = () => {
     let initInputStoreObj = {};
-    for (let i = 0; i < props.inputName.length; i++) {
-      initInputStoreObj = { ...initInputStoreObj, [props.inputName[i]]: '' };
+    for (let i = 0; i < inputNameProps.length; i += 1) {
+      initInputStoreObj = { ...initInputStoreObj, [inputNameProps[i]]: '' };
     }
     initInputStoreObj = { ...initInputStoreObj, id: '' };
     return initInputStoreObj;
@@ -48,8 +53,54 @@ const CvInputs = (props) => {
     setInputStore({ ...newInputStore });
   };
 
-  const renderInputHandler = (inputForm, inputName) => {
-    return inputForm.map((element, index) => {
+  const deleteInputHandler = (e) => {
+    switchDispatch.dispatchDelete(dispatch, storeNameProps, e.target.id);
+    setIsEdit(false);
+
+    clearInputStore();
+  };
+
+  // gets saved input to be edited
+  const getEditHandler = (e) => {
+    validate.clearValidation(storeNameProps);
+
+    if (!isEdit) {
+      setIsEdit(true);
+      const copySavedStore = [...state[storeNameProps]];
+      setInputStore(getObjById(copySavedStore, e.target.id));
+    }
+
+    if (isEdit === true && e.target.textContent === 'DEL') {
+      deleteInputHandler(e);
+    }
+  };
+
+  const setEditHandler = (event) => {
+    const { name } = event.target.name;
+    const { value } = event.target.value;
+    setInputStore({
+      ...inputStore,
+      [name]: value,
+    });
+  };
+
+  const editSavedHandler = () => {
+    const inputId = inputStore.id;
+    const copySavedStore = [...state[storeNameProps]];
+
+    const inputIdArr = copySavedStore.map((el) => el.id);
+
+    const editIndex = inputIdArr.indexOf(inputId * 1);
+
+    copySavedStore.splice(editIndex, 1, inputStore);
+
+    switchDispatch.dispatchUpdate(dispatch, storeNameProps, inputStore);
+
+    setIsEdit(false);
+  };
+
+  const renderInputHandler = (inputForm, inputName) =>
+    inputForm.map((element, index) => {
       const copyInputStore = { ...inputStore };
       const initialValue = copyInputStore[Object.keys(copyInputStore)[index]];
 
@@ -60,16 +111,14 @@ const CvInputs = (props) => {
           <select
             name={inputName[index]}
             value={initialValue}
-            onChange={(event) => setEditHandler(event)}
+            onBlur={(event) => setEditHandler(event)}
             id={inputName[index]}
           >
-            {element.optionValue.map((element, index) => {
-              return (
-                <option key={element} value={element}>
-                  {element.toUpperCase()}
-                </option>
-              );
-            })}
+            {element.optionValue.map((optionValueElement) => (
+              <option key={optionValueElement} value={optionValueElement}>
+                {element.toUpperCase()}
+              </option>
+            ))}
           </select>
         );
         // render content for input box
@@ -86,7 +135,7 @@ const CvInputs = (props) => {
             onClick={(e) => {
               document.getElementById(`${e.target.id}`).style.border = '';
             }}
-          ></input>
+          />
         );
       }
 
@@ -102,41 +151,9 @@ const CvInputs = (props) => {
         </li>
       );
     });
-  };
 
-  // gets saved input to be edited
-  const getEditHandler = (e) => {
-    validate.clearValidation(props.storeName);
-
-    if (!isEdit) {
-      setIsEdit(true);
-      const copySavedStore = [...state[props.storeName]];
-      setInputStore(getObjById(copySavedStore, e.target.id));
-    }
-
-    if (isEdit === true && e.target.textContent === 'DEL') {
-      deleteInputHandler(e);
-    }
-  };
-
-  const deleteInputHandler = (e) => {
-    switchDispatch.dispatchDelete(dispatch, props.storeName, e.target.id);
-    setIsEdit(false);
-
-    clearInputStore();
-  };
-
-  const setEditHandler = (event) => {
-    let name = event.target.name;
-    let value = event.target.value;
-    setInputStore({
-      ...inputStore,
-      [name]: value,
-    });
-  };
-
-  const renderSavedCvInputHandler = (arr) => {
-    return arr.map((el) => (
+  const renderSavedCvInputHandler = (arr) =>
+    arr.map((el) => (
       <SavedCvInput
         title={el.title}
         place={el.location}
@@ -146,22 +163,21 @@ const CvInputs = (props) => {
         edit={isEdit}
       />
     ));
-  };
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let newInput = {};
 
-    let isValid = validate.validateForm(e);
+    const isValid = validate.validateForm(e);
 
     if (isValid) {
-      for (let i = 0; i < e.target.length; i++) {
+      for (let i = 0; i < e.target.length; i += 1) {
         if (
           e.target[i].tagName === 'INPUT' ||
           e.target[i].tagName === 'SELECT'
         ) {
-          const name = e.target[i].name;
-          const value = e.target[i].value;
+          const { name } = e.target[i].name;
+          const { value } = e.target[i].value;
           newInput = { ...newInput, [name]: value };
         }
       }
@@ -171,62 +187,43 @@ const CvInputs = (props) => {
         clearInputStore();
       } else {
         newInput = { ...newInput, id: new Date().getTime() };
-        switchDispatch.dispatchSubmit(dispatch, props.storeName, newInput);
+        switchDispatch.dispatchSubmit(dispatch, storeNameProps, newInput);
         clearInputStore();
       }
     }
   };
 
-  const editSavedHandler = () => {
-    const inputId = inputStore.id;
-    const copySavedStore = [...state[props.storeName]];
-
-    const inputIdArr = copySavedStore.map((el) => {
-      return el.id;
-    });
-
-    const editIndex = inputIdArr.indexOf(inputId * 1);
-
-    copySavedStore.splice(editIndex, 1, inputStore);
-
-    switchDispatch.dispatchUpdate(dispatch, props.storeName, inputStore);
-
-    setIsEdit(false);
-  };
-
   setLocalStorage('fullState', fullState);
 
   return (
-    <React.Fragment>
+    <>
       <div className={`${classes.cvInputs}`}>
-        <h3 className={classes.cvInputs__heading}>{props.heading}</h3>
+        <h3 className={classes.cvInputs__heading}>{headingProps}</h3>
         <form
           onSubmit={(e) => {
             formSubmitHandler(e);
           }}
-          id={props.storeName}
+          id={storeNameProps}
         >
           <ul className={classes.cvInputs__content}>
-            {renderInputHandler(
-              props.inputForm,
-              props.inputName,
-              props.storeName
-            )}
+            {renderInputHandler(inputFormProps, inputNameProps, storeNameProps)}
           </ul>
-          <Button
-            btnType={'btnAdd'}
-            btnLabel={isEdit ? 'UPDATE' : 'ADD'}
-          ></Button>
+          <Button btnType="btnAdd" btnLabel={isEdit ? 'UPDATE' : 'ADD'} />
         </form>
       </div>
       <div className={classes.cvInputs__saved}>
-        <h3
-          className={classes.cvInputs__heading}
-        >{`Saved ${props.heading}`}</h3>
-        {renderSavedCvInputHandler(state[props.storeName])}
+        <h3 className={classes.cvInputs__heading}>{`Saved ${headingProps}`}</h3>
+        {renderSavedCvInputHandler(state[storeNameProps])}
       </div>
-    </React.Fragment>
+    </>
   );
+};
+
+CvInputs.propTypes = {
+  headingProps: PropTypes.string.isRequired,
+  inputFormProps: PropTypes.arrayOf(PropTypes.object).isRequired,
+  inputNameProps: PropTypes.arrayOf(PropTypes.strings).isRequired,
+  storeNameProps: PropTypes.string.isRequired,
 };
 
 export default connect(null, mapDispatch)(CvInputs);
