@@ -1,7 +1,5 @@
 export const getObjById = (arr, id) => {
-  const newIndexedArr = arr.map((element) => {
-    return element.id;
-  });
+  const newIndexedArr = arr.map((element) => element.id);
 
   return arr[newIndexedArr.indexOf(id * 1)];
 };
@@ -11,7 +9,7 @@ export const setLocalStorage = (storageName, data) => {
 };
 
 export const retrieveLocalStorage = (storageName) => {
-  let retrieveData = localStorage.getItem(`${storageName}`);
+  const retrieveData = localStorage.getItem(`${storageName}`);
   if (retrieveData !== null) {
     return JSON.parse(retrieveData);
   }
