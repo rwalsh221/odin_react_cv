@@ -18,7 +18,7 @@ const mapDispatch = {
   ...actionTypes,
 };
 
-const CvInputs = ({
+const CVInputs = ({
   headingProps,
   inputFormProps,
   inputNameProps,
@@ -45,12 +45,19 @@ const CvInputs = ({
 
   const clearInputStore = () => {
     const copyInputStore = { ...inputStore };
-    let newInputStore = {};
-    for (const key in copyInputStore) {
-      newInputStore = { ...newInputStore, [key]: '' };
-    }
+    const copyInputStoreKeys = Object.keys(copyInputStore);
+    console.log(copyInputStore);
+    copyInputStoreKeys.forEach((element) => {
+      copyInputStore[element] = '';
+    });
+    console.log(copyInputStore);
+    // let newInputStore = {};
+    // for (const key in copyInputStore) {
+    //   newInputStore = { ...newInputStore, [key]: '' };
+    // }
 
-    setInputStore({ ...newInputStore });
+    // setInputStore({ ...newInputStore });
+    setInputStore({ ...copyInputStore });
   };
 
   const deleteInputHandler = (e) => {
@@ -219,11 +226,11 @@ const CvInputs = ({
   );
 };
 
-CvInputs.propTypes = {
+CVInputs.propTypes = {
   headingProps: PropTypes.string.isRequired,
   inputFormProps: PropTypes.arrayOf(PropTypes.object).isRequired,
   inputNameProps: PropTypes.arrayOf(PropTypes.strings).isRequired,
   storeNameProps: PropTypes.string.isRequired,
 };
 
-export default connect(null, mapDispatch)(CvInputs);
+export default connect(null, mapDispatch)(CVInputs);
