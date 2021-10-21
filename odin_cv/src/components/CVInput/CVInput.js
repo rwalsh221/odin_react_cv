@@ -26,7 +26,7 @@ const CVInput = () => (
       ]}
     />
     <CVInputs
-      heading="Education History"
+      headingProps="Education History"
       inputFormProps={[
         { title: 'Course Name', type: 'text' },
         { title: 'Place of Study', type: 'text' },
@@ -34,10 +34,10 @@ const CVInput = () => (
         { title: 'Date', type: 'date' },
       ]}
       inputNameProps={['title', 'location', 'qualification', 'date']}
-      storeName={storeNames.education}
+      storeNameProps={storeNames.education}
     />
     <CVInputs
-      heading="Employment History"
+      headingProps="Employment History"
       inputFormProps={[
         { title: 'Job Name', type: 'text' },
         { title: 'Place of Work', type: 'text' },
@@ -45,10 +45,10 @@ const CVInput = () => (
         { title: 'Description', type: 'text' },
       ]}
       inputNameProps={['title', 'location', 'date', 'description']}
-      storeName={storeNames.employment}
+      storeNameProps={storeNames.employment}
     />
     <CVInputs
-      heading="Additional Skills"
+      headingProps="Additional Skills"
       inputFormProps={[
         { title: 'Title', type: 'text' },
         {
@@ -58,16 +58,16 @@ const CVInput = () => (
         },
       ]}
       inputNameProps={['title', 'level']}
-      storeName={storeNames.additional}
+      storeNameProps={storeNames.additional}
     />
     <CVInputs
-      heading="References"
+      headingProps="References"
       inputFormProps={[
         { title: 'Name', type: 'text' },
         { title: 'Location', type: 'text' },
       ]}
       inputNameProps={['title', 'location']}
-      storeName={storeNames.references}
+      storeNameProps={storeNames.references}
     />
   </main>
 );

@@ -26,6 +26,7 @@ const CVInputs = ({
 }) => {
   const dispatch = useDispatch();
   const state = useSelector((reduxState) => reduxState.cvInputs);
+
   const fullState = useSelector((reduxState) => reduxState);
 
   const initInputStore = () => {
@@ -46,11 +47,11 @@ const CVInputs = ({
   const clearInputStore = () => {
     const copyInputStore = { ...inputStore };
     const copyInputStoreKeys = Object.keys(copyInputStore);
-    console.log(copyInputStore);
+
     copyInputStoreKeys.forEach((element) => {
       copyInputStore[element] = '';
     });
-    console.log(copyInputStore);
+
     // let newInputStore = {};
     // for (const key in copyInputStore) {
     //   newInputStore = { ...newInputStore, [key]: '' };
@@ -83,8 +84,8 @@ const CVInputs = ({
   };
 
   const setEditHandler = (event) => {
-    const { name } = event.target.name;
-    const { value } = event.target.value;
+    const { name } = event.target;
+    const { value } = event.target;
     setInputStore({
       ...inputStore,
       [name]: value,
@@ -118,12 +119,12 @@ const CVInputs = ({
           <select
             name={inputName[index]}
             value={initialValue}
-            onBlur={(event) => setEditHandler(event)}
+            onChange={(event) => setEditHandler(event)}
             id={inputName[index]}
           >
             {element.optionValue.map((optionValueElement) => (
               <option key={optionValueElement} value={optionValueElement}>
-                {element.toUpperCase()}
+                {optionValueElement.toUpperCase()}
               </option>
             ))}
           </select>
@@ -162,12 +163,12 @@ const CVInputs = ({
   const renderSavedCvInputHandler = (arr) =>
     arr.map((el) => (
       <SavedCvInput
-        title={el.title}
-        place={el.location}
-        id={el.id}
+        titleProps={el.title}
+        placeProps={el.location}
+        idProps={el.id}
         key={el.id}
-        click={(e) => getEditHandler(e)}
-        edit={isEdit}
+        clickProps={(e) => getEditHandler(e)}
+        editProps={isEdit}
       />
     ));
 
@@ -183,8 +184,8 @@ const CVInputs = ({
           e.target[i].tagName === 'INPUT' ||
           e.target[i].tagName === 'SELECT'
         ) {
-          const { name } = e.target[i].name;
-          const { value } = e.target[i].value;
+          const { name } = e.target[i];
+          const { value } = e.target[i];
           newInput = { ...newInput, [name]: value };
         }
       }
@@ -229,7 +230,7 @@ const CVInputs = ({
 CVInputs.propTypes = {
   headingProps: PropTypes.string.isRequired,
   inputFormProps: PropTypes.arrayOf(PropTypes.object).isRequired,
-  inputNameProps: PropTypes.arrayOf(PropTypes.strings).isRequired,
+  inputNameProps: PropTypes.arrayOf(PropTypes.string).isRequired,
   storeNameProps: PropTypes.string.isRequired,
 };
 

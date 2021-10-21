@@ -7,7 +7,7 @@ const button = (props) => {
 
   return (
     <button
-      type="button"
+      type="submit"
       className={[btnActiveClass, classes[props.btnType]].join(' ')}
       onClick={props.click}
       id={props.id}

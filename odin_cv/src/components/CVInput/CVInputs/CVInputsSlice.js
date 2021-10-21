@@ -71,19 +71,19 @@ const cvInputsSlice = createSlice({
   },
   reducers: {
     addEducation(state, action) {
-      const { payload } = action.payload;
+      const { payload } = action;
       state.education.push({ ...payload });
     },
     addEmployment(state, action) {
-      const { payload } = action.payload;
+      const { payload } = action;
       state.employment.push({ ...payload });
     },
     addAdditional(state, action) {
-      const { payload } = action.payload;
+      const { payload } = action;
       state.additional.push({ ...payload });
     },
     addReferences(state, action) {
-      const { payload } = action.payload;
+      const { payload } = action;
       state.references.push({ ...payload });
     },
     updateEducation(state, action) {

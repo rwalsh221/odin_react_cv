@@ -31,6 +31,8 @@
     ],
     "no-return-assign": "warn",
     "no-param-reassign": "warn",
-    "no-shadow": "warn"
+    "no-shadow": "warn",
+    // "jsx-ally/no-onchange": "warn",
+    "jsx-a11y/no-onchange": "off"
   }
 }

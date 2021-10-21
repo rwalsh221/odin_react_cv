@@ -103,7 +103,7 @@ const CVInputsPersonal = ({ inputFormProps, inputNameProps }) => {
 
 CVInputsPersonal.propTypes = {
   inputFormProps: PropTypes.arrayOf(PropTypes.object).isRequired,
-  inputNameProps: PropTypes.arrayOf(PropTypes.strings).isRequired,
+  inputNameProps: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(null, mapDispatch)(CVInputsPersonal);
