@@ -30,6 +30,7 @@
       }
     ],
     "no-return-assign": "warn",
-    "no-param-reassign": "warn"
+    "no-param-reassign": "warn",
+    "no-shadow": "warn"
   }
 }

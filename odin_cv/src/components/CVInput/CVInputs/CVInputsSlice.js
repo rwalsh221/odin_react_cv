@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// import { element } from 'prop-types';
+
 import { retrieveLocalStorage } from '../../../utilities/utilities';
 
 const fullState = retrieveLocalStorage('fullState');
@@ -16,9 +18,15 @@ export const storeNames = {
 // STATEOBJECT = CVInputs storeName
 let stateObject = {};
 
-for (let key in storeNames) {
-  stateObject = { ...stateObject, [key]: [] };
-}
+const storeNamesKeys = Object.keys(storeNames);
+
+storeNamesKeys.forEach((element) => {
+  stateObject = { ...stateObject, [element]: [] };
+});
+
+// for (let key in storeNames) {
+//   stateObject = { ...stateObject, [key]: [] };
+// }
 
 // sets initialState based on local storage
 if (fullState === undefined) {
@@ -27,11 +35,18 @@ if (fullState === undefined) {
   };
 } else {
   initState = { ...fullState.cvInputs };
-  for (let key in stateObject) {
-    if (fullState.cvInputs[key] === undefined) {
-      initState = { ...initState, [key]: [] };
+  const stateObjectKeys = Object.keys(stateObject);
+  stateObjectKeys.forEach((element) => {
+    if (fullState.cvInputs[element] === undefined) {
+      initState = { ...initState, [element]: [] };
     }
-  }
+  });
+
+  // for (let key in stateObject) {
+  //   if (fullState.cvInputs[key] === undefined) {
+  //     initState = { ...initState, [key]: [] };
+  //   }
+  // }
 }
 
 const updateInput = (state, action, stateObject) => {
@@ -56,19 +71,19 @@ const cvInputsSlice = createSlice({
   },
   reducers: {
     addEducation(state, action) {
-      const payload = action.payload;
+      const { payload } = action.payload;
       state.education.push({ ...payload });
     },
     addEmployment(state, action) {
-      const payload = action.payload;
+      const { payload } = action.payload;
       state.employment.push({ ...payload });
     },
     addAdditional(state, action) {
-      const payload = action.payload;
+      const { payload } = action.payload;
       state.additional.push({ ...payload });
     },
     addReferences(state, action) {
-      const payload = action.payload;
+      const { payload } = action.payload;
       state.references.push({ ...payload });
     },
     updateEducation(state, action) {
