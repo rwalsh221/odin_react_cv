@@ -27,7 +27,7 @@ const cvPreview = (props) => {
     <section className={classes.sectionTwo}>
       <div className={classes.imageContainer}>
         <img
-          src="../../../../img/lester.jpg"
+          src="../../../../img/outline.png"
           alt="personal"
           className={classes.imagePersonal}
         />

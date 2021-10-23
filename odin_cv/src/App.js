@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import Home from './containers/Home/Home';
-import Preview from './containers/Preview/Preview';
+import Loading from './containers/Loading/Loading';
+
+const Home = React.lazy(() => import('./containers/Home/Home'));
+const Preview = React.lazy(() => import('./containers/Preview/Preview'));
 
 require('./App.css');
 require('./Variables.css');
@@ -12,8 +14,10 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/preview" component={Preview} />
-          <Route path="/" component={Home} />
+          <React.Suspense fallback={<Loading />}>
+            <Route path="/preview" component={Preview} />
+            <Route exact path="/" component={Home} />
+          </React.Suspense>
         </Switch>
       </div>
     </Router>

@@ -23,11 +23,11 @@ const HeaderNavigation = ({ homeProps, previewProps }) => {
 
   return (
     <header>
-      <Link to="/home">
+      <Link to="/">
         <h1 className={classes.mainHeading}>ODIN-Project-React-CV</h1>
       </Link>
       <nav className={classes.navBar}>
-        <Link to="/home">
+        <Link to="/">
           <button className={btnClassHome} type="button">
             HOME
           </button>
