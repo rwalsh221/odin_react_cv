@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// import { element } from 'prop-types';
-
 import { retrieveLocalStorage } from '../../../utilities/utilities';
 
 const fullState = retrieveLocalStorage('fullState');
@@ -24,10 +22,6 @@ storeNamesKeys.forEach((element) => {
   stateObject = { ...stateObject, [element]: [] };
 });
 
-// for (let key in storeNames) {
-//   stateObject = { ...stateObject, [key]: [] };
-// }
-
 // sets initialState based on local storage
 if (fullState === undefined) {
   initState = {
@@ -41,12 +35,6 @@ if (fullState === undefined) {
       initState = { ...initState, [element]: [] };
     }
   });
-
-  // for (let key in stateObject) {
-  //   if (fullState.cvInputs[key] === undefined) {
-  //     initState = { ...initState, [key]: [] };
-  //   }
-  // }
 }
 
 const updateInput = (state, action, stateObject) => {

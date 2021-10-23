@@ -52,11 +52,6 @@ const CVInputs = ({
       copyInputStore[element] = '';
     });
 
-    // let newInputStore = {};
-    // for (const key in copyInputStore) {
-    //   newInputStore = { ...newInputStore, [key]: '' };
-    // }
-
     // setInputStore({ ...newInputStore });
     setInputStore({ ...copyInputStore });
   };

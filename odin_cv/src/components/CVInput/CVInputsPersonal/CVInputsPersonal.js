@@ -30,7 +30,6 @@ const CVInputsPersonal = ({ inputFormProps, inputNameProps }) => {
     setPersonalStore({ ...savedState });
   }, [setPersonalStore, savedState]);
 
-  // TODO: CHECK IT ISNT  const { name } = event.target.name; *************************************************************************************************************************************************************
   const inputContentHandler = (event) => {
     const { name } = event.target;
     const { value } = event.target;

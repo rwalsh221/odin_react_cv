@@ -6,7 +6,6 @@ import CVInput from '../../components/CVInput/CVInput';
 const Home = () => (
   <>
     <HeaderNavigation homeProps />
-    {/* <HeaderNavigation home={true} /> */}
     <CVInput />
   </>
 );
